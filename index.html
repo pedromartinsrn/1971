@@ -11,8 +11,10 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <title>1971</title>
+
 <style>
-  body {
+  body
+  {
     font-family: "Georgia";
     margin: 0;
     padding: 0;
@@ -64,12 +66,17 @@
     padding-right: 5%;
     position: absolute;
     white-space: nowrap;
+
   }
 
   .fonte {
     font-style: italic;
     font-size:x-small;
     text-align: center;
+    width: 800px;
+    text-align: justify;
+
+
   }
 
   #produtividade-crescimento{
@@ -186,7 +193,12 @@
     height: 537px;
   }
   
+
+
+
   }
+
+
 
 </style>
 </head>
@@ -255,22 +267,45 @@
   <p class="fonte">Fonte: US Census Bureau, Department of Foreign Trade</p>
   </div>
 
+
+
+
   <div class="chart-container" id="chart-6">
     <p class="chart-title">Percentual da renda total dos 10% mais ricos nos EUA.</p>
+
     <picture>
       <source srcset="assets/img/grafico-6.webp" type="image/webp">
       <img src="assets/img/grafico-6.jpg" id="concentracao-renda" alt="concentracao-renda" loading="lazy">
-  </picture>  
-    <p class="fonte">Fonte: <a href="https://eml.berkeley.edu/~saez/lecture_saez_arrow.pdf" target="_blank">Piketty e Saez, <small>2003 atualizado até 2011</small>. Citado em estudo de Emmanuel Saez, UC Berkeley.</a></p>
+    </picture>  
+      <p class="fonte">Fonte: <a href="https://eml.berkeley.edu/~saez/lecture_saez_arrow.pdf" target="_blank">Piketty e Saez, <small>2003 atualizado até 2011</small>. Citado em estudo de Emmanuel Saez, UC Berkeley.</a></p>
   </div>
 
-  <img src="assets/img/grafico-66.jpg" alt="filhos-por-mulher" id="filhos-por-mulher" onload="if(window.innerWidth > 768) this.style.width='35%';" loading="lazy">
+
+  <div class="chart-container">
+    <p class="chart-title">Filhos por Mulher</p>
+    <div style= "position: relative">
+
+    <picture>
+
+      <source srcset="assets/img/grafico-66.jpg" type="image/jpg">
+        <center>
+      <img src="assets/img/grafico-66.jpg" width="500px" id="filhos-por-mulher" alt="filhos-por-mulher" loading="lazy">
+      </center>
+      <span class="chart-inside" style="top: 44%; right:4%; font-size: calc(0.5em + 1.5vw)">Mundo</span>
+    </picture> 
+
+      <p class="fonte"> Fonte: Nações Unidas - Divisão de População (Revisão de 2019).Nota: Filhos por mulher é medido como a taxa de fertilidade total, que é o numero de filhos que nasceriam para uma mulher média se ela vivesse até o fim dos seus filhos. Anos de fertilidade e dar à luz a crianças com as atuais taxas de fertilidade especificas por idade.</p>
+
+  </div>
+
 
 
   <div class="chart-container">
     <p class="chart-title">Crescimento da renda nos EUA</small></p>
     <div style="position: relative">
+
     <picture>
+
       <source srcset="assets/img/grafico-4.webp" type="image/webp">
       <img src="assets/img/grafico-4.jpg" id="crescimento-renda" alt="crescimento-renda" loading="lazy">
       <span class="chart-inside" style="top: 33%; right:45%; font-size: calc(0.5em + 1.5vw)">90% menor<br> renda</span>
@@ -308,8 +343,42 @@
     </picture>
 </div> 
     <p class="fonte">Fontes: Departamento de Análise Econômica (BEA), Departamento de Estatísticas do Trabalho (BLS)</p>
-  </div>
-    <img src="assets/img/grafico-9.jpg" alt="Image 9" loading="lazy">
+
+
+    <div class="chart-container">
+    <p class="chart-title"><b>PIB</b> <em>per capita</em> <b>Real e Renda Mediana Masculina</b></p>
+    <div style="position: relative">
+    <picture>
+
+     
+      <img src="assets/img/pibXrendamasculina.png" id="PIB_P_CAPITA_MASCULINO" alt="pib-masculino">
+      <span class="chart-inside" style="top: 4%; right:15%; font-size: calc(0.5em + 1.2vw)">PIB real<i> per capita</i></span>
+      <span class="chart-inside" style="top: 55%; right:5%; font-size: calc(0.5em + 1.2vw)"><b>Renda Mediana Masculina</b></span>
+      
+      </picture>
+
+       <p class=>Nota: Série calculada ultilizando o Deflator implícito do PIB, $2009. Ambas as séries, 1948 = 100.</p>
+</div> 
+    <p class="fonte">Fontes: Bureau of Economic Analysis e Census Bureau Historical Income Table P-2.</p>
+
+
+    <div class="chart-container">
+    <p class="chart-title"><b>PIB</b> <em>per capita</em> <b>Real e Renda Mediana Feminina</b></p>
+    <div style="position: relative">
+    <picture>
+
+      
+      <img src="assets/img/pibXrendafeminina.png" id="PIB_P_CAPITA_MASCULINO" alt="pib-masculino">
+      <span class="chart-inside" style="top: 8%; right:15%; font-size: calc(0.5em + 1.2vw)">PIB real<i> per capita</i></span>
+      <span class="chart-inside" style="top: 56%; right:5%; font-size: calc(0.5em + 1.2vw)"><b>Renda Mediana Feminina</b></span>
+      
+      </picture>
+
+       <p class=>Nota: Série calculada ultilizando o Deflator implícito do PIB, $2009. Ambas as séries, 1948 = 100.</p>
+</div> 
+    <p class="fonte">Fontes: Bureau of Economic Analysis e Census Bureau Historical Income Table P-2.</p>
+
+
 
     <div class="chart-container" style="position: relative">
       <p class="chart-title">EUA se tornou uma nação de casais com dupla renda.</p>
