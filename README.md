@@ -1,3 +1,3 @@
-Este trabalho pertence a @DrCalebIsaac. 
+Este trabalho pertence a @doutorcaleb. 
 
-Estou fazendo a digitação dos gráficos para HTML como forma de estudo da linguagem e se o resultado for OK, espero que possa ser usado para transmitir essas informações para o resto do mundo em qualquer idioma
+Estou fazendo a digitação dos gráficos e titulos em HTML como forma de estudo da linguagem. Se por acaso o resultado for satisfatorio, espero que possa ser usado para transmitir essas informações para o resto do mundo em qualquer idioma.

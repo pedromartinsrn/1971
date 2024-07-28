@@ -75,9 +75,26 @@
     text-align: center;
     width: 800px;
     text-align: justify;
+   }
 
-
+  .container {
+    display: flex;
+    align-items: center;
+    position: relative;
+        
   }
+  
+  .imagem {
+    order: 2;
+    margin-left: 5px;
+  }
+
+  .texto {
+    text-align: center;          
+    order: 1;
+    align-items: left;
+  }
+
 
   #produtividade-crescimento{
     height: 220px;
@@ -194,16 +211,10 @@
   }
   
 
-
-
-  }
-
-
-
 </style>
 </head>
 <body>
-  <small style="text-align: center;margin-top:20px;"><a href="https://wtfhappenedin1971.com/">🇺🇸</a>  | <a href="https://twitter.com/heavilyarmedc">@heavilyarmedc</a> | <a href="https://twitter.com/doutorcaleb">@doutorcaleb</a></small>
+  <small style="text-align: center;margin-top:20px;"><a href="https://wtfhappenedin1971.com/">🇺🇸</a>  | <a href="https://twitter.com/heavilyarmedc">@heavilyarmedc</a> | <a href="https://twitter.com/doutorcaleb">@doutorcaleb</a> | <a href="https://twitter.com/Guilherm_sena">@Guilherm_sena</a></small>
   <h1 style="margin-top:30px;padding-bottom:20px;">O QUE ACONTECEU EM 1971?</h1>
 
   <div class="chart-container">
@@ -495,8 +506,48 @@
     <p><em>As áreas sombreadas indicam recessoeções nos EUA.</em></p>
         <p class="fonte">Fonte: <a href="https://fred.stlouisfed.org/" target="_blank">Fred US</a> | Bureau de Análise Econômica dos EUA</p>
 
-    <img src="assets/img/grafico-47.jpg" alt="taxas-de-juros-3000ac" id="taxas-de-juros-3000ac" loading="lazy">
-    <img src="assets/img/grafico-48.jpg" alt="retornos-titulos-10" id="retornos-titulos-10" loading="lazy">
+  <div class="chart-container" style="position: relative">
+  <p class="chart-title">Taxa de Juros desde 3000 A.C</p>
+   <div style="position: relative">
+     <center>
+      <picture>
+      <source srcset="assets/img/grafico-47.jpg" type="image/jpg">
+      <img width="700px" src="assets/img/grafico-47.jpg" alt="taxas-de-juros-3000ac" loading="lazy"></center>
+      </picture>
+     <em><span class="chart-inside" style="font-size: 95%;top: 3%; right: 24%">Curto Prazo</span>
+      <span class="chart-inside" style="font-size: 95%;top: 3%; right: 4%">Longo Prazo</span></em>
+    </div>
+        <p class="fonte">Fonte: Banco da Inglaterra, Global Financial Data e SYLLA, Richard. "A história da taxa de juros".</p>
+
+     <div class="chart-container" style="position: relative">
+  <p class="chart-title">Rendimento de Titulos Públicos de longo prazo (10 anos)</p>
+   <div style="position: relative">
+     <center>
+      <picture>
+      <source srcset="assets/img/grafico-48.jpg" type="image/jpg">
+      <img src="assets/img/grafico-48.jpg" alt="retornos-titulos-10" loading="lazy"></center>
+      </picture>
+
+    </div>
+        <p class="fonte">Fonte: Organização para Cooperação e Desenvolvimento Econômico.</p>
+
+
+     <div class="chart-container" style="position: relative">
+  <p class="chart-title">Consumo de energia eletrica por pessoa nos EUA (KW)</p></div>
+
+       <div class="container">
+        <p class="texto">KW PER CAPITA</p>
+
+        <img src="assets/img/grafico-49.jpg" alt="energia-per-capita" class="imagem">
+      
+        <p class="chart-inside" style="font-size:60%; top:3%; right: 67%"><em>Consumo real</em></p>
+         <p class="chart-inside" style="font-size:50%; top:8%; right: 64%"><em>Curva de Henry Adams</em></p>
+    </div>
+   
+        
+
+
+
     <img src="assets/img/grafico-49.jpg" alt="energia-per-capita" id="energia-per-capita" loading="lazy">
     <img src="assets/img/grafico-50.jpg" alt="energia-pib-g7" id="energia-pib-g7" loading="lazy">
     <img src="assets/img/grafico-51.jpg" alt="consumo-energia-mundial" id="consumo-energia-mundial" loading="lazy">
