@@ -29,7 +29,7 @@ Copyright (C) 2025
 Você deve ter recebido uma cópia da Licença Pública Geral GNU junto com este programa. Se não, veja <https://www.gnu.org/licenses/>. 
 
 
-## Artigo de Pedro Martins Rodrigues Novaes: "Afinal, o que aconteceu em 1971?"
+## Artigo de Pedro Martins: "Afinal, o que aconteceu em 1971?"
 
 Afinal, O QUE ACONTECEU EM 1971? 
 
@@ -58,5 +58,3 @@ O Creditismo fez as dívidas serem mais valiosas do que ouro, e poupar ser menos
 Essa guerra ainda não acabou. Eles possuem navios, aviões, caças e canhões - mas temos uma nova arma, que faz com que todo poderio desse império seja agora, em 2023, incapaz de roubar sequer uma migalha do nosso pão:
 
 Bitcoin.
-
-Pedro Martins.
