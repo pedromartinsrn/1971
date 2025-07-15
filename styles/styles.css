@@ -164,6 +164,8 @@ body {
   .chart-container:first-of-type {
     position: relative;
     min-height: 105vh;
+    scroll-snap-align: start;
+    justify-content: flex-start;
   }
 
   #title-prod{
@@ -425,33 +427,27 @@ body {
   .snap-container {
     padding-bottom: 0;
     scroll-snap-type: y mandatory;
+    scroll-padding-top: 0;
   }
   
   .chart-container {
-    scroll-snap-align: center;
+    scroll-snap-align: start;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
   }
 
   .chart-container:first-of-type {
-    scroll-snap-align: center;
+    scroll-snap-align: start;
     min-height: 100vh;
     padding-top: 0;
-    justify-content: center;
+    margin-top: 0;
+    justify-content: flex-start;
   }
 
   #inflacao-acumulada {
     min-height: 72vh;
-    
-  }
-  
-  .chart-container:first-of-type {
-    scroll-snap-align: start;
-    padding-top: 0;
-    justify-content: flex-start;
-    padding-top: 20px;
   }
   
   .chart-container:first-of-type .chart-title,
