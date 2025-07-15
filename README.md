@@ -47,9 +47,7 @@ Mas, em 1971, todo o ouro enviado foi roubado. A França exigiu seu ouro de volt
 
 No Creditismo, a riqueza dos Estados é medida pela sua capacidade de se endividar. A dívida dos EUA em 1971 era de $400 bilhões de dólares e hoje é de $32 trilhões, 80 vezes maior em apenas 50 anos. Dívidas que serviram muito bem à “expansão inexorável do poder do Império Americano”, como já era previsto pelo professor Olavo de Carvalho. 
 
-Já Renato Amoedo (
-@R38TAO
-) frequentemente pergunta: “O Brasil tem ou deve Reais?”. Deve. E no mundo das moedas fiduciárias, a tentação é desvalorizar a dívida, através da desvalorização da moeda pela inflação monetária. Mas isso tem seus custos, desde o aumento de preços até a redução da natalidade. 
+Já Renato Amoedo frequentemente pergunta: “O Brasil tem ou deve Reais?”. Deve. E no mundo das moedas fiduciárias, a tentação é desvalorizar a dívida, através da desvalorização da moeda pela inflação monetária. Mas isso tem seus custos, desde o aumento de preços até a redução da natalidade. 
 
 Os efeitos do fim do capitalismo afetam diversas áreas da vida humana. São tão variados e profundos que desafiam uma descrição completa em palavras. Gráficos podem oferecer uma visão mais clara. Analisando-os, os efeitos são evidentes.
 
