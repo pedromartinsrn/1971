@@ -29,7 +29,7 @@ Copyright (C) 2025
 Você deve ter recebido uma cópia da Licença Pública Geral GNU junto com este programa. Se não, veja <https://www.gnu.org/licenses/>. 
 
 
-##Artigo de Pedro Martins Rodrigues Novaes: "Afinal, o que aconteceu em 1971?"
+## Artigo de Pedro Martins Rodrigues Novaes: "Afinal, o que aconteceu em 1971?"
 
 Afinal, O QUE ACONTECEU EM 1971? 
 
