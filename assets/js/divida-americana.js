@@ -46,7 +46,7 @@
         left: '2%',
         right: '2%',
         top: '4%',
-        bottom: '8%',
+        bottom: '6%',
         containLabel: true
       },
       yAxis: {

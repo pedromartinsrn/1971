@@ -25,6 +25,7 @@ build/
 backup/
 assets/js/translator.js
 assets/js/translation-config.js
+wrangler.toml
 .env
 .env.local
 .env.production

@@ -214,6 +214,11 @@ body {
     max-width: 100%;
   }
 
+  /* Constrain the large oil production chart to consistent size */
+  #oleos-vegetais {
+    width: 784px;
+  }
+
   .nota {
     font-style: italic;
     font-size:xx-small;
@@ -358,6 +363,11 @@ body {
   #balanca-eua{
     height: 346px;
     width: 744px;
+  }
+
+  #oleos-vegetais {
+    width: 600px;
+    height: var(--chart-height);
   }
 
   .bg-video {
@@ -690,8 +700,8 @@ body {
     opacity: 1;
 }
 
-#produtividade-crescimento{
-  min-height: 65vh;
+#divida-americana{
+  max-height: 55vh;
 }
 
 .graph-and-labels {
@@ -923,7 +933,7 @@ body {
         font-size: 26px;
     }
 
-#title-infla-acu{
+#title-div-ame{
   font-size:23px;
 }
 
