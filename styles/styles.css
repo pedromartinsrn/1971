@@ -426,12 +426,12 @@ body {
 @media (max-width: 767px) {
   .snap-container {
     padding-bottom: 0;
-    scroll-snap-type: y mandatory;
+    scroll-snap-type: none;
     scroll-padding-top: 0;
   }
   
   .chart-container {
-    scroll-snap-align: start;
+    scroll-snap-align: none;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -439,7 +439,7 @@ body {
   }
 
   .chart-container:first-of-type {
-    scroll-snap-align: start;
+    scroll-snap-align: none;
     min-height: 100vh;
     padding-top: 0;
     margin-top: 0;

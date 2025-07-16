@@ -1,52 +1,32 @@
-# Arquivos do sistema
 .DS_Store
 Thumbs.db
 desktop.ini
-
-# Arquivos de IDE/Editor
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
-
-# Arquivos de backup
 *.bak
 *.backup
 *_backup
-
-# Arquivos temporários
 *.tmp
 *.temp
 temp/
 tmp/
-
-# Logs
 *.log
 logs/
-
-# Arquivos de cache
 .cache/
 *.cache
-
-# Arquivos de build/minificação
 dist/
 build/
 *.min.css
 *.min.js
 .vite/
 backup/
-
-# Dependências (se você usar npm/yarn)
-node_modules/
-package-lock.json
-yarn.lock
-
-# Arquivos de ambiente
+assets/js/translator.js
+assets/js/translation-config.js
 .env
 .env.local
 .env.production
-
-# Arquivos de configuração local
 config.local.js
 settings.local.json 

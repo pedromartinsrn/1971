@@ -1,8 +1,8 @@
-const TRANSLATOR_KEY = 'II0txDBSb8aAfKIrtxXBnZFLyFRvG6X1x1zePRU1reu4Vih0u8hgJQQJ99BBACYeBjFXJ3w3AAAbACOGrWoK';
-const TRANSLATOR_REGION = 'eastus';
-const TRANSLATOR_ENDPOINT = 'https://api.cognitive.microsofttranslator.com/translate';
-
 async function translateContainer(container) {
+    if (!window.siteConfig?.translation?.enabled) {
+        return;
+    }
+    
     const userLang = navigator.language.split('-')[0];
     if (userLang === 'pt') return;
     
