@@ -51,19 +51,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 if (!entry.isIntersecting) {
                     menuContainer.style.display = 'flex';
-                    fixedSignature.style.display = 'block';
+                    if (fixedSignature) fixedSignature.style.display = 'block';
                     
                     // Only show title if menu is open
                     if (document.getElementById('menu-list').classList.contains('show')) {
                         setTimeout(() => {
-                            fixedTitle.classList.add('show');
+                            if (fixedTitle) fixedTitle.classList.add('show');
                         }, 10);
                     }
                 } else {
-                    fixedTitle.classList.remove('show');
+                    if (fixedTitle) fixedTitle.classList.remove('show');
                     setTimeout(() => {
                         menuContainer.style.display = 'none';
-                        fixedSignature.style.display = 'none';
+                        if (fixedSignature) fixedSignature.style.display = 'none';
                     }, 300);
                 }
             }
