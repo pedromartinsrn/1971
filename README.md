@@ -1,5 +1,7 @@
 # O que aconteceu em 1971?
 
+<img width="1425" height="941" alt="{CCD6D944-BE47-4464-A20A-8C85C87A2E24}" src="https://github.com/user-attachments/assets/1f1910b5-47d4-45ac-8e51-a713bd73dad2" />
+
 Inspirado em wtfhappenedin1971.com. 
 
 Este site apresenta uma série de gráficos e uma pergunta: O que aconteceu em 1971?
