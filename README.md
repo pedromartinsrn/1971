@@ -26,7 +26,7 @@ Este projeto está licenciado sob a [GNU GPL v3.0](LICENSE).
 
 Copyright (C) 2025
 
-Você deve ter recebido uma cópia da Licença Pública Geral GNU junto com este programa. Se não, veja <https://www.gnu.org/licenses/>. 
+Você deve ter recebido uma cópia da Licença Pública Geral GNU junto com este programa. Se não, veja <https://www.gnu.org/licenses/gpl-3.0.html>. 
 
 
 ## Artigo de Pedro Martins: "Afinal, o que aconteceu em 1971?"
