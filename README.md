@@ -7,9 +7,7 @@ Este site apresenta uma série de gráficos e uma pergunta: O que aconteceu em 1
 ## Como rodar localmente
 
 1. Clone o repositório:
-   ```bash
-   git clone https://github.com/seu-usuario/oqueaconteceuem1971.git
-   ```
+
 2. Abra o arquivo `index.html` em seu navegador.
 
 ## Estrutura do projeto
