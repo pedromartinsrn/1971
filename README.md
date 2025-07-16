@@ -1,6 +1,8 @@
 # O que aconteceu em 1971?
 
-Este projeto apresenta uma série de gráficos e análises sobre eventos econômicos a partir de 1971, com foco em dados históricos dos EUA e do mundo.
+Inspirado em wtfhappenedin1971.com. 
+
+Este site apresenta uma série de gráficos e uma pergunta: O que aconteceu em 1971?
 
 ## Como rodar localmente
 
