@@ -1,396 +1,494 @@
 body {
-    -webkit-user-select: none; /* Safari */
-    -ms-user-select: none; /* IE 10 and IE 11 */
-    user-select: none; /* Standard syntax */
-    font-family: "Liter";
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #FFF;
-    color: #000;
-  }
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+  font-family: "Liter";
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  color: #000;
+}
 
+.menu-container {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.menu-icon {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 48px;
+  height: 48px;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.menu-icon:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.bar {
+  width: 24px;
+  height: 2px;
+  background-color: #2b2b2b;
+  border-radius: 2px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
+}
+
+.menu-icon.open .bar:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.menu-icon.open .bar:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.menu-icon.open .bar:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+.fixed-menu-title {
+  font-family: "vremenagroteskmedium";
+  color: #2b2b2b;
+  font-size: 18px;
+  font-weight: 500;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 12px 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.fixed-menu-title.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.menu-list {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 320px;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(20px);
+  border-right: 1px solid rgba(0, 0, 0, 0.08);
+  list-style: none;
+  padding: 80px 0 20px 0;
+  margin: 0;
+  overflow-y: auto;
+  transform: translateX(-100%);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 999;
+  box-shadow: 4px 0 30px rgba(0, 0, 0, 0.1);
+}
+
+.menu-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.menu-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.menu-list::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+.menu-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.menu-list.show {
+  transform: translateX(0);
+}
+
+.menu-list li {
+  margin: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.menu-list li:last-child {
+  border-bottom: none;
+}
+
+.menu-list a {
+  display: block;
+  padding: 16px 24px;
+  text-decoration: none;
+  color: #2b2b2b;
+  font-family: "vremenagroteskbook", sans-serif;
+  font-size: 15px;
+  line-height: 1.4;
+  transition: all 0.2s ease;
+  position: relative;
+  border-left: 3px solid transparent;
+}
+
+.menu-list a:hover {
+  background: rgba(43, 43, 43, 0.05);
+  border-left-color: #2b2b2b;
+  padding-left: 28px;
+  color: #000;
+}
+
+.menu-list a:active {
+  background: rgba(43, 43, 43, 0.1);
+}
+
+/* Overlay para fechar o menu clicando fora */
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(2px);
+  z-index: 998;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.menu-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Responsividade melhorada */
+@media (max-width: 768px) {
   .menu-container {
-    position: fixed;
-    top: 20px;
-    left: 50px;
-    z-index: 100;
-    text-align: left;
-    display: none;
-    align-items: center;
-  }
-  
-  .fixed-menu-title {
-    font-family: 'vremenagroteskmedium';
-    color: #2b2b2b;
-    margin-left: 10px;
-    position: relative;
-    white-space: nowrap;
-    font-size: 18px;
-    opacity: 1;
-    transform: translateY(-80px);
-    transition: transform 0.3s ease;
-    line-height: 1;
-    display: block;
-    pointer-events: none;
-  }
-  
-  .fixed-menu-title.show {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-  }
-  
-  @media (max-width: 768px) {
-    .fixed-menu-title {
-      font-size: 16px;
-      margin-left: 8px;
-    }
-  }
-  
-  .menu-icon {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    cursor: pointer;
-    padding: 10px;
-    align-items: center;
-    background-color: transparent;
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
-    z-index: 101;
-    transition: transform 0.4s ease;
-    transform-origin: center;
-    width: 40px;
-    height: 40px;
-    justify-content: center;
-  }
-  
-  
-  .bar {
-    width: 26px;
-    height: 2px;
-    background-color: #000;
-    border-radius: 0;
-    transition: none;
-  }
-  
-  .bar:nth-child(2) {
-    width: 26px;
-  }
-  
-  .menu-icon.open {
-    transform: rotate(90deg);
-  }
-  
-  .menu-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: auto;
-    text-align: left;
-    overflow-y: scroll;
-    height: 100vh;
-    max-height: 100vh;
-    scroll-snap-type: y mandatory;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    scrollbar-color: #000 #fff;
-    background-color: transparent;
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
-    padding: 12px 0;
-    margin-top: 8px;
-    font-family: 'vremenagroteskbook', sans-serif;
-    opacity: 1;
-    visibility: hidden;
-    transform: translateY(110%);
-    transition: opacity 0.2s ease, transform 0.4s ease, visibility 0.3s ease;
-    font-size:1.3em
-  }
-  
-  .menu-list::-webkit-scrollbar {
-    display: none;
-  }
-  
-  .menu-list.show {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-  }
-  
-  .menu-list li {
-    padding: 9px 12px;
-    scroll-snap-align: start;
-    background-color: transparent;
-    text-align: left;
-  }
-
-  
-  .menu-list a {
-    display: block;
-    text-decoration: none;
-    color: black;
-    font-size: 1em;
-    white-space: nowrap;
-    background-color: transparent;
-    text-align: left;
-  }
-  
-  .menu-list a:hover {
-    text-decoration: none;
-    background-color: transparent;
-  }
-
-  a {
-    color:#000000;
-  }
-
-  .links {	
-    position: absolute;
-    top: 10px;
-    font-size: large;
-  }
-
-  a:hover {
-    color: #000;
-    text-decoration: underline;
-  }
-
-  .chart-container:first-of-type {
-    position: relative;
-    min-height: 105vh;
-    scroll-snap-align: start;
-    justify-content: flex-start;
-  }
-
-  #title-prod{
-    margin-top:10%;
-  }
-  
-  .arrow-down {
-    position: absolute;
-    bottom: 15%;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 3rem;
-    animation: bounce 1.7s infinite;
-    color: inherit;
-    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
-    text-decoration: none;
-  }
-  
-  @keyframes bounce {
-    0%, 100% { transform: translateX(-50%) translateY(0); }
-    50% { transform: translateX(-50%) translateY(-25px); }
-  }
-  
-  
-  .chart-container {
-    min-height: 90vh;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    position: relative;
-    overflow: visible;
-  }
-  
-
-  .oqueaconteceuem1971 {
-    font-family:vremenagroteskmedium;
-    font-size: 2em;
-    text-align: center;
-    color:#2b2b2b;
-  }
-
-  
-  img {
-    max-width: 100%;
-  }
-
-  /* Constrain the large oil production chart to consistent size */
-  #oleos-vegetais {
-    width: 784px;
-  }
-
-  .nota {
-    font-style: italic;
-    font-size:xx-small;
-    text-align: center;
-  }
-
-
-  .chart-title {
-    font-family:vremenagroteskbook;
-    text-align: center;
-    font-size: 22px;
-    margin-left: 25px;
-    margin-right: 25px;
-    margin-top: -5px;
-    color:#2b2b2b
-  }
-
-  .chart-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-    position: relative;
-  }
-
-  .icons-container {
-    position: absolute;
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    justify-content: center;
-    top: 103%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: auto;
-    z-index: 100;
-  }
-
-  .icons-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .icons-left, .icons-right {
-    display: none;
-  }
-
-  .share-icon, .comment-icon, .fonte-icon, .toggle-switch {
-    width: 22px;
-    height: 22px;
-    cursor: pointer;
-  }
-
-  .share-icon {
-    position: static;
-  }
-
-  .comment-icon {
-    position: static;
-  }
-
-  .chart-inside{
-    font-family:"vremenagroteskitalic";
-    position: absolute;
-    white-space: nowrap;
-    font-size: calc(0.4em + 3vw);
-    color:rgb(32, 32, 32)
-  }
-
-  .fonte-container {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    cursor: pointer;
-  }
-
-  .fonte {
-    font-style: italic;
-    font-size: small;
-    position: absolute;
     top: 15px;
-    left: 50%;
-    transform: translateX(-50%) translateY(-20px);
+    left: 15px;
+  }
+
+  .menu-list {
+    width: 280px;
+    padding-top: 70px;
+  }
+
+  .menu-list a {
+    padding: 14px 20px;
+    font-size: 14px;
+  }
+
+  .fixed-menu-title {
+    font-size: 16px;
+    padding: 10px 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .menu-list {
+    width: calc(100vw - 60px);
+    max-width: 280px;
+  }
+}
+
+/* Animação de entrada dos itens do menu */
+.menu-list.show li {
+  animation: slideInLeft 0.3s ease forwards;
+}
+
+.menu-list.show li:nth-child(1) {
+  animation-delay: 0.05s;
+}
+.menu-list.show li:nth-child(2) {
+  animation-delay: 0.1s;
+}
+.menu-list.show li:nth-child(3) {
+  animation-delay: 0.15s;
+}
+.menu-list.show li:nth-child(4) {
+  animation-delay: 0.2s;
+}
+.menu-list.show li:nth-child(5) {
+  animation-delay: 0.25s;
+}
+
+@keyframes slideInLeft {
+  from {
     opacity: 0;
-    transition: all 0.3s ease;
-    pointer-events: none;
-    white-space: nowrap;
-    visibility: hidden;
-    background: none;
-    padding: 0;
-    border-radius: 0;
-    box-shadow: none;
+    transform: translateX(-20px);
   }
-
-  .fonte.show {
-    transform: translateX(-50%) translateY(0);
+  to {
     opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
+    transform: translateX(0);
   }
+}
 
-  :root {
-    --chart-min-width: 300px;
-    --chart-height: 550px;
-  }
-  
-  .canvas {
-    width: calc(100vw);
-    min-width: var(--chart-min-width);
-    min-height: var(--chart-height);
-  }
+a {
+  color: #000000;
+}
 
-  #diferenca-renda{
-    height: 200px;
-  }
+.links {
+  position: absolute;
+  top: 10px;
+  font-size: large;
+}
 
+a:hover {
+  color: #000;
+  text-decoration: underline;
+}
 
-  #crescimento-renda{
-    height: 220px;
-    width: 355px;
-  }
+.chart-container:first-of-type {
+  position: relative;
+  min-height: 105vh;
+  scroll-snap-align: start;
+  justify-content: flex-start;
+}
 
-  #salarios-renda{
-    height:550px;
-    width: 355px;
-  }
+#title-prod {
+  margin-top: 10%;
+}
 
-  #concentracao-renda{
-    height: 220px;
-    width: 355px;
-  }
+.arrow-down {
+  position: absolute;
+  bottom: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 3rem;
+  animation: bounce 1.7s infinite;
+  color: inherit;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
+  text-decoration: none;
+}
 
-  #participacao-renda{
-    height: 296px;
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
   }
-  
-  #custo-vida{
-    height: 224px;
+  50% {
+    transform: translateX(-50%) translateY(-25px);
   }
+}
 
-  #balanca-eua{
-    height: 346px;
-    width: 744px;
-  }
+.chart-container {
+  min-height: 90vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  overflow: visible;
+}
 
-  #oleos-vegetais {
-    width: 600px;
-    height: var(--chart-height);
-  }
+.oqueaconteceuem1971 {
+  font-family: vremenagroteskmedium;
+  font-size: 2em;
+  text-align: center;
+  color: #2b2b2b;
+}
 
-  .bg-video {
-    display: none
-  }
-  
-  .snap-container {
-    overflow-y: scroll;
-    height: 100vh;
-    width: 100%;
-    -ms-overflow-style: none;
-    scrollbar-width: 1px;
-    scroll-snap-type: y mandatory;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-  }
+img {
+  max-width: 100%;
+}
 
-  .snap-container::-webkit-scrollbar {
-    display: none;
-  }
+/* Constrain the large oil production chart to consistent size */
+#oleos-vegetais {
+  width: 784px;
+}
+
+.nota {
+  font-style: italic;
+  font-size: xx-small;
+  text-align: center;
+}
+
+.chart-title {
+  font-family: vremenagroteskbook;
+  text-align: center;
+  font-size: 22px;
+  margin-left: 25px;
+  margin-right: 25px;
+  margin-top: -5px;
+  color: #2b2b2b;
+}
+
+.chart-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  position: relative;
+}
+
+.icons-container {
+  position: absolute;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  top: 103%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  z-index: 100;
+}
+
+.icons-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icons-left,
+.icons-right {
+  display: none;
+}
+
+.share-icon,
+.comment-icon,
+.fonte-icon,
+.toggle-switch {
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+}
+
+.share-icon {
+  position: static;
+}
+
+.comment-icon {
+  position: static;
+}
+
+.chart-inside {
+  font-family: "vremenagroteskitalic";
+  position: absolute;
+  white-space: nowrap;
+  font-size: calc(0.4em + 3vw);
+  color: rgb(32, 32, 32);
+}
+
+.fonte-container {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.fonte {
+  font-style: italic;
+  font-size: small;
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-20px);
+  opacity: 0;
+  transition: all 0.3s ease;
+  pointer-events: none;
+  white-space: nowrap;
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.fonte.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+:root {
+  --chart-min-width: 300px;
+  --chart-height: 550px;
+}
+
+.canvas {
+  width: calc(100vw);
+  min-width: var(--chart-min-width);
+  min-height: var(--chart-height);
+}
+
+#diferenca-renda {
+  height: 200px;
+}
+
+#crescimento-renda {
+  height: 220px;
+  width: 355px;
+}
+
+#salarios-renda {
+  height: 550px;
+  width: 355px;
+}
+
+#concentracao-renda {
+  height: 220px;
+  width: 355px;
+}
+
+#participacao-renda {
+  height: 296px;
+}
+
+#custo-vida {
+  height: 224px;
+}
+
+#balanca-eua {
+  height: 346px;
+  width: 744px;
+}
+
+#oleos-vegetais {
+  width: 600px;
+  height: var(--chart-height);
+}
+
+.bg-video {
+  display: none;
+}
+
+.snap-container {
+  overflow-y: scroll;
+  height: 100vh;
+  width: 100%;
+  -ms-overflow-style: none;
+  scrollbar-width: 1px;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.snap-container::-webkit-scrollbar {
+  display: none;
+}
 
 .mobile-nav {
   position: fixed;
@@ -402,7 +500,7 @@ body {
   display: none;
   justify-content: space-around;
   align-items: center;
-  box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
   z-index: 999;
 }
 
@@ -421,7 +519,7 @@ body {
 }
 
 .mobile-nav-icon span {
-  font-family: 'vremenagroteskbook';
+  font-family: "vremenagroteskbook";
   font-size: 10px;
   color: #333;
 }
@@ -442,7 +540,7 @@ body {
     scroll-snap-type: none;
     scroll-padding-top: 0;
   }
-  
+
   .chart-container {
     scroll-snap-align: none;
     min-height: 100vh;
@@ -462,12 +560,12 @@ body {
   #inflacao-acumulada {
     min-height: 72vh;
   }
-  
+
   .chart-container:first-of-type .chart-title,
   .chart-container:first-of-type .oqueaconteceuem1971 {
     margin-top: 10px;
   }
-  
+
   .chart-container:last-of-type {
     margin-bottom: 0;
   }
@@ -481,7 +579,7 @@ body {
   .snap-container {
     scroll-snap-type: y proximity;
   }
-  
+
   .chart-container {
     scroll-snap-align: start;
   }
@@ -492,218 +590,218 @@ body {
 }
 
 .comments-sheet {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: white;
-    border-radius: 15px 15px 0 0;
-    z-index: 1001;
-    height: 85vh;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-    transform: translateY(100%);
-    display: flex;
-    flex-direction: column;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  border-radius: 15px 15px 0 0;
+  z-index: 1001;
+  height: 85vh;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  transform: translateY(100%);
+  display: flex;
+  flex-direction: column;
 }
 
 .comments-sheet.open {
-    transform: translateY(0);
+  transform: translateY(0);
 }
 
 .comments-header {
-    padding: 20px 15px;
-    border-bottom: 1px solid #eee;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  padding: 20px 15px;
+  border-bottom: 1px solid #eee;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .comments-title {
-    font-family: 'vremenagroteskbook';
-    font-size: 18px;
-    margin: 0;
-    padding: 0;
+  font-family: "vremenagroteskbook";
+  font-size: 18px;
+  margin: 0;
+  padding: 0;
 }
 
 .comments-subtitle {
-    font-family: 'vremenagroteskbookitalic';
-    font-size: 14px;
-    color: #666;
-    margin: 5px 0 0 0;
+  font-family: "vremenagroteskbookitalic";
+  font-size: 14px;
+  color: #666;
+  margin: 5px 0 0 0;
 }
 
 .comments-handle {
-    width: 40px;
-    height: 4px;
-    background: #ddd;
-    border-radius: 2px;
-    margin: 0 auto 10px;
+  width: 40px;
+  height: 4px;
+  background: #ddd;
+  border-radius: 2px;
+  margin: 0 auto 10px;
 }
 
 .comments-content {
-    height: calc(100% - 60px);
-    display: flex;
-    flex-direction: column;
+  height: calc(100% - 60px);
+  display: flex;
+  flex-direction: column;
 }
 
 .comments-list {
-    flex: 1;
-    overflow-y: auto;
-    padding: 15px;
+  flex: 1;
+  overflow-y: auto;
+  padding: 15px;
 }
 
 .comments-input-container {
-    border-top: 1px solid #eee;
-    padding: 15px;
-    background: white;
-    display: flex;
-    gap: 10px;
-    align-items: center;
+  border-top: 1px solid #eee;
+  padding: 15px;
+  background: white;
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
 
 .comments-input-container textarea {
-    font-family: 'vremenagroteskbook';
-    flex: 1;
-    border: none;
-    resize: none;
-    font-size: 14px;
-    background: white;
-    min-height: 20px;
-    padding: 8px 0;
+  font-family: "vremenagroteskbook";
+  flex: 1;
+  border: none;
+  resize: none;
+  font-size: 14px;
+  background: white;
+  min-height: 20px;
+  padding: 8px 0;
 }
 
 .comments-input-container textarea:focus {
-    outline: none;
+  outline: none;
 }
 
 .comments-input-container button {
-    background: none;
-    border: none;
-    padding: 8px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .comments-input-container button svg {
-    width: 24px;
-    height: 24px;
-    fill: black;
-    opacity: 1;
+  width: 24px;
+  height: 24px;
+  fill: black;
+  opacity: 1;
 }
 
 .comments-input-container button:disabled svg {
-    opacity: 0.3;
+  opacity: 0.3;
 }
 
 .comments-form {
-    position: sticky;
-    bottom: 0;
-    background: white;
-    padding: 15px;
-    border-top: 1px solid #eee;
-    display: flex;
-    gap: 10px;
-    align-items: center;
+  position: sticky;
+  bottom: 0;
+  background: white;
+  padding: 15px;
+  border-top: 1px solid #eee;
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
 
 .comments-input {
-    flex: 1;
-    border: none;
-    outline: none;
-    font-size: 14px;
-    padding: 8px;
-    resize: none;
-    min-height: 20px;
-    max-height: 80px;
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  padding: 8px;
+  resize: none;
+  min-height: 20px;
+  max-height: 80px;
 }
 
 .comments-form button {
-    color: #0095f6;
-    font-weight: 600;
-    background: none;
-    border: none;
-    padding: 8px;
-    cursor: pointer;
-    opacity: 0.5;
+  color: #0095f6;
+  font-weight: 600;
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  opacity: 0.5;
 }
 
 .comments-form button:enabled {
-    opacity: 1;
+  opacity: 1;
 }
 
 .comment {
-    padding: 12px 16px;
-    display: flex;
-    gap: 12px;
+  padding: 12px 16px;
+  display: flex;
+  gap: 12px;
 }
 
 .comment-main {
-    flex: 1;
-    min-width: 0;
-    max-width: calc(100% - 40px);
+  flex: 1;
+  min-width: 0;
+  max-width: calc(100% - 40px);
 }
 
 .comment-header {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 4px;
 }
 
 .comment-user {
-    font-family: 'vremenagroteskbook';
-    font-weight: 600;
-    font-size: 13px;
+  font-family: "vremenagroteskbook";
+  font-weight: 600;
+  font-size: 13px;
 }
 
 .comment-time {
-    font-family: 'vremenagroteskbookitalic';
-    color: #737373;
-    font-size: 11px;
-    opacity: 0.8;
+  font-family: "vremenagroteskbookitalic";
+  color: #737373;
+  font-size: 11px;
+  opacity: 0.8;
 }
 
 .comment-content {
-    font-family: 'vremenagroteskbook';
-    font-size: 14px;
-    padding-left: 16px;
-    word-wrap: break-word;
-    white-space: pre-wrap;
+  font-family: "vremenagroteskbook";
+  font-size: 14px;
+  padding-left: 16px;
+  word-wrap: break-word;
+  white-space: pre-wrap;
 }
 
 .comments-close {
-    font-family: 'vremenagroteskbook';
-    position: absolute;
-    right: 15px;
-    top: 15px;
-    cursor: pointer;
-    font-size: 24px;
-    opacity: 0.5;
-    line-height: 1;
-    z-index: 2;
+  font-family: "vremenagroteskbook";
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  cursor: pointer;
+  font-size: 24px;
+  opacity: 0.5;
+  line-height: 1;
+  z-index: 2;
 }
 
 .comments-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0,0,0,0.5);
-    z-index: 1000;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .comments-overlay.open {
-    opacity: 1;
+  opacity: 1;
 }
 
-#divida-americana{
+#divida-americana {
   max-height: 55vh;
 }
 
@@ -764,7 +862,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.5);
   z-index: 1000;
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -803,25 +901,24 @@ body {
 }
 
 @media (min-width: 768px) {
-
-  #title-prod{
-    margin-top:0%;
+  #title-prod {
+    margin-top: 0%;
   }
 
-    .icons-container {
-        top: 100%;
-        margin-top: 13px;
-        left: 50%;
-    }
+  .icons-container {
+    top: 100%;
+    margin-top: 13px;
+    left: 50%;
+  }
 
-    .icons-right {
-      position: absolute;
-      right: 32%;
-    }
+  .icons-right {
+    position: absolute;
+    right: 32%;
+  }
 
   .oqueaconteceuem1971 {
-    margin-bottom:30px;
-    margin-top:-5px;
+    margin-bottom: 30px;
+    margin-top: -5px;
     font-size: 4.5em;
     text-align: center;
   }
@@ -843,7 +940,7 @@ body {
   .slide {
     padding: 20px;
   }
-  
+
   .explanation {
     position: absolute;
     top: 0;
@@ -868,11 +965,11 @@ body {
   .explanation.show {
     transform: translateX(0);
   }
-  
+
   .explanation.hiding {
     transform: translateX(100%);
   }
-  
+
   .explanation p {
     background-color: transparent;
     padding: 0;
@@ -884,7 +981,7 @@ body {
     color: #333;
     width: 100%;
   }
-  
+
   .graph-and-labels {
     transition: transform 0.3s ease-in-out;
     transform-origin: center;
@@ -892,24 +989,24 @@ body {
     width: 100%;
     margin: 0 auto;
   }
-  
+
   .graph-and-labels.show-explanation {
     transform: translateX(-25%) !important;
   }
-  
+
   .explanation-overlay {
     display: none;
   }
-  
+
   .explanation-close,
   .explanation-handle {
     display: none;
   }
-  
+
   .icons-container {
     z-index: 100;
   }
-  
+
   .explanation-button {
     position: relative;
     z-index: 101;
@@ -920,228 +1017,226 @@ body {
     height: 12px;
   }
 
-:root {
-  --chart-width: 880px;
-  --chart-width-menor: 740px;
-  --chart-height: 85vh;
-}
+  :root {
+    --chart-width: 880px;
+    --chart-width-menor: 740px;
+    --chart-height: 85vh;
+  }
 
-    h1 {
-        font-size: 3em;
-    }
+  h1 {
+    font-size: 3em;
+  }
 
+  .chart-title {
+    text-align: center;
+    font-size: 26px;
+  }
 
-    .chart-title{
-        text-align: center;
-        font-size: 26px;
-    }
+  #title-div-ame {
+    font-size: 23px;
+  }
 
-#title-div-ame{
-  font-size:23px;
-}
+  .chart-inside {
+    position: absolute;
+    white-space: nowrap;
+    font-size: 1.5em;
+  }
 
-    .chart-inside{
-        position: absolute;
-        white-space: nowrap;
-        font-size: 1.5em;
-    }
+  .nota {
+    font-size: small;
+  }
+  .fonte {
+    font-size: small;
+  }
 
-    .nota{
-        font-size:small;
-    }
-    .fonte {
-        font-size:small
-    }
+  .chart-header {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
 
-    .chart-header {
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-    }
+  #produtividade-crescimento {
+    width: var(--chart-width);
+    min-height: var(--chart-height);
+  }
 
-    #produtividade-crescimento{
-        width: var(--chart-width);
-        min-height: var(--chart-height);
-    }
+  #cpi-us {
+    width: var(--chart-width);
+    min-height: var(--chart-height);
+  }
 
-    #cpi-us {
-        width: var(--chart-width);
-        min-height: var(--chart-height);
-    }
+  #m2-supply {
+    width: var(--chart-width);
+    min-height: var(--chart-height);
+  }
 
-    #m2-supply {
-        width: var(--chart-width);
-        min-height: var(--chart-height);
-    }
+  #desigualdade-renda {
+    width: var(--chart-width-menor);
+    min-height: var(--chart-height);
+  }
 
-    #desigualdade-renda {
-        width: var(--chart-width-menor);
-        min-height: var(--chart-height);
-    }
+  #inflacao-acumulada {
+    width: var(--chart-width);
+    min-height: 80vh;
+  }
 
-    #inflacao-acumulada {
-        width: var(--chart-width);
-        min-height: 80vh;
-    }
+  #preco-ouro {
+    width: var(--chart-width);
+    height: var(--chart-height);
+  }
 
-    #preco-ouro{
-        width: var(--chart-width);
-        height: var(--chart-height);
-    }
+  #preco-petroleo {
+    min-height: var(--chart-height);
+    width: var(--chart-width);
+  }
 
-    #preco-petroleo {
-        min-height: var(--chart-height);
-        width: var(--chart-width);
-    }
+  #taxa-natalidade {
+    width: var(--chart-width-menor);
+    min-height: var(--chart-height);
+  }
 
-    #taxa-natalidade {
-        width: var(--chart-width-menor);
-        min-height: var(--chart-height);
-    }
+  #anos-casa {
+    min-height: var(--chart-height);
+    width: var(--chart-width);
+  }
 
-    #anos-casa {
-        min-height: var(--chart-height);
-        width: var(--chart-width);
-    }
+  #casa-renda {
+    min-height: var(--chart-height);
+    width: var(--chart-width);
+  }
 
-    #casa-renda {
-        min-height: var(--chart-height);
-        width: var(--chart-width);
-    }
+  #divida-americana {
+    width: var(--chart-width);
+    min-height: var(--chart-height);
+  }
 
-    #divida-americana {
-      width: var(--chart-width);
-      min-height: var(--chart-height);
-    }
+  #superavit-federal {
+    width: var(--chart-width);
+    min-height: var(--chart-height);
+  }
 
-    #superavit-federal {
-        width: var(--chart-width);
-        min-height: var(--chart-height);
-    }
+  #jovens-morando {
+    width: var(--chart-width);
+    min-height: var(--chart-height);
+  }
 
-    #jovens-morando {
-        width: var(--chart-width);
-        min-height: var(--chart-height);
-    }
+  #taxa-encarceramento {
+    width: var(--chart-width-menor);
+    min-height: var(--chart-height);
+  }
 
-    #taxa-encarceramento {
-        width:var(--chart-width-menor);
-        min-height: var(--chart-height);
-    }
+  #primeiro-casamento {
+    width: var(--chart-width-menor);
+    min-height: var(--chart-height);
+  }
 
-    #primeiro-casamento {
-        width: var(--chart-width-menor);
-        min-height: var(--chart-height);
-    }
+  #remuneracao-pib {
+    width: var(--chart-width-menor);
+    height: var(--chart-height);
+  }
 
-    #remuneracao-pib{
-        width: var(--chart-width-menor);
-        height: var(--chart-height);
-    }
+  #renda-1 {
+    width: var(--chart-width-menor);
+    height: var(--chart-height);
+  }
 
-    #renda-1{
-        width: var(--chart-width-menor);
-        height: var(--chart-height);
-    }
+  #salario-ceo-normal {
+    width: var(--chart-width-menor);
+    height: var(--chart-height);
+  }
 
-    #salario-ceo-normal{
-        width: var(--chart-width-menor);
-        height: var(--chart-height);
-    }
+  #salarios-ceo-normal {
+    width: var(--chart-width-menor);
+    height: var(--chart-height);
+  }
 
-    #salarios-ceo-normal {
-        width: var(--chart-width-menor);
-        height: var(--chart-height);
-    }
+  #dolar-1635 {
+    width: var(--chart-width);
+    height: var(--chart-height);
+  }
 
-    #dolar-1635 {
-        width: var(--chart-width);
-        height: var(--chart-height);
-    }
+  #diferenca-renda {
+    width: 618px;
+    height: 289px;
+  }
 
-    #diferenca-renda{
-        width:618px;
-        height: 289px;
-    }
+  #crescimento-renda {
+    width: 800px;
+    height: 464px;
+  }
 
-    #crescimento-renda{
-        width:800px;
-        height: 464px;
-    }
+  #salarios-renda {
+    width: 451px;
+    height: 600px;
+  }
 
-    #salarios-renda{
-        width: 451px;
-        height:600px;
-    }
+  #taxa-poupanca {
+    width: 100% !important;
+    min-width: var(--chart-width);
+    height: var(--chart-height);
+  }
 
-    #taxa-poupanca {
-        width: 100% !important;
-        min-width: var(--chart-width);
-        height: var(--chart-height);
-    }
+  #balanca-produtos {
+    width: var(--chart-width);
+    height: 490px;
+  }
 
-    #balanca-produtos{
-        width: var(--chart-width);
-        height:490px;
-    }
+  #concentracao-renda {
+    width: 680px;
+    height: 490px;
+  }
 
-    #concentracao-renda{
-        width: 680px;
-        height:490px;
-    }
+  #participacao-renda {
+    width: 724px;
+    height: 510px;
+  }
 
-    #participacao-renda{
-        width: 724px;
-        height: 510px;
-    }
+  #custo-vida {
+    width: 537px;
+    height: 840px;
+  }
 
-    #custo-vida{
-        width: 537px;
-        height: 840px;
-    }
+  .bg-video {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%) blur(16px);
+    z-index: -1;
+    transform: scale(1);
+  }
 
-    .bg-video {
-        display:block;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        filter: grayscale(100%) blur(16px);
-        z-index: -1;
-        transform: scale(1);
-    }
+  .snap-container {
+    scroll-snap-type: y mandatory;
+  }
 
-    .snap-container {
-        scroll-snap-type: y mandatory;
-    }
-    
-    .chart-container {
-        scroll-snap-align: start;
-    }
+  .chart-container {
+    scroll-snap-align: start;
+  }
 
-    .comment-main {
-        max-width: calc(100% - 60px);
-    }
+  .comment-main {
+    max-width: calc(100% - 60px);
+  }
 
-    .comments-sheet {
-        width: 70%;
-        left: 50%;
-        right: auto;
-        transform: translate(-50%, 100%);
-    }
+  .comments-sheet {
+    width: 70%;
+    left: 50%;
+    right: auto;
+    transform: translate(-50%, 100%);
+  }
 
-    .comments-sheet.open {
-        transform: translate(-50%, 0);
-    }
+  .comments-sheet.open {
+    transform: translate(-50%, 0);
+  }
 
-
-    .fixed-signature {
-      width: 220px;
-      right:-2%;
-      opacity:0.8;
-    }
+  .fixed-signature {
+    width: 220px;
+    right: -2%;
+    opacity: 0.8;
+  }
 }
 
 .explanation-button {
@@ -1153,54 +1248,53 @@ body {
 }
 
 @font-face {
-  font-family: 'vremenagroteskmedium';
-  src: url('../assets/fonts/vremenagroteskmedium-webfont.woff2') format('woff2'),
-       url('../assets/fonts/vremenagroteskmedium-webfont.woff') format('woff');
+  font-family: "vremenagroteskmedium";
+  src: url("../assets/fonts/vremenagroteskmedium-webfont.woff2") format("woff2"),
+    url("../assets/fonts/vremenagroteskmedium-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'vremenagrotesk';
-  src: url('../assets/fonts/vremenagrotesk-webfont.woff2') format('woff2'),
-       url('../assets/fonts/vremenagrotesk-webfont.woff') format('woff');
+  font-family: "vremenagrotesk";
+  src: url("../assets/fonts/vremenagrotesk-webfont.woff2") format("woff2"),
+    url("../assets/fonts/vremenagrotesk-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'vremenagroteskitalic';
-  src: url('../assets/fonts/vremenagroteskitalic-webfont.woff2') format('woff2'),
-       url('../assets/fonts/vremenagroteskitalic-webfont.woff') format('woff');
+  font-family: "vremenagroteskitalic";
+  src: url("../assets/fonts/vremenagroteskitalic-webfont.woff2") format("woff2"),
+    url("../assets/fonts/vremenagroteskitalic-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'vremenagroteskbook';
-  src: url('../assets/fonts/vremenagroteskbook-webfont.woff2') format('woff2'),
-       url('../assets/fonts/vremenagroteskbook-webfont.woff') format('woff');
+  font-family: "vremenagroteskbook";
+  src: url("../assets/fonts/vremenagroteskbook-webfont.woff2") format("woff2"),
+    url("../assets/fonts/vremenagroteskbook-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'vremenagroteskbookitalic';
-  src: url('../assets/fonts/vremenagroteskbookitalic-webfont.woff2') format('woff2'),
-       url('../assets/fonts/vremenagroteskbookitalic-webfont.woff') format('woff');
+  font-family: "vremenagroteskbookitalic";
+  src: url("../assets/fonts/vremenagroteskbookitalic-webfont.woff2") format("woff2"),
+    url("../assets/fonts/vremenagroteskbookitalic-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
-
 }
 
 .menu-list li:first-child a strong {
-    font-family: 'vremenagroteskmedium';
-    color: #2b2b2b;
+  font-family: "vremenagroteskmedium";
+  color: #2b2b2b;
 }
 
 .graph-and-labels.show-explanation {
@@ -1250,15 +1344,15 @@ body {
     justify-content: center;
     padding: 0 30px 0 40px;
   }
-  
+
   .explanation.show {
     transform: translateX(45%);
   }
-  
+
   .explanation.hiding {
     transform: translateX(260%);
   }
-  
+
   .explanation p {
     background-color: transparent;
     padding: 0;
@@ -1270,7 +1364,7 @@ body {
     color: #333;
     width: 100%;
   }
-  
+
   .graph-and-labels {
     transition: transform 0.3s ease-in-out;
     transform-origin: center;
@@ -1278,15 +1372,15 @@ body {
     width: 100%;
     margin: 0 auto;
   }
-  
+
   .graph-and-labels.show-explanation {
     transform: translateX(-25%) !important;
   }
-  
+
   .icons-container {
     z-index: 100;
   }
-  
+
   .explanation-button {
     position: relative;
     z-index: 101;
@@ -1303,14 +1397,14 @@ body {
   height: 22px;
   background: #ffffff;
   border-radius: 11px;
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   transition: all 0.3s ease;
   margin-left: 8px;
 }
 
 .toggle-switch::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 18px;
   height: 18px;
@@ -1319,11 +1413,11 @@ body {
   top: 2px;
   left: 2px;
   transition: all 0.3s ease;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .toggle-switch.active {
-  background: #4CAF50;
+  background: #4caf50;
 }
 
 .toggle-switch.active::after {
@@ -1362,7 +1456,7 @@ h2 {
   font-weight: normal;
 }
 
-h2, .chart-title {
+h2,
+.chart-title {
   font-weight: normal !important;
 }
-
