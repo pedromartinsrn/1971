@@ -1,4 +1,4 @@
-// Aumento do preço das casas vs renda
+
 (function() {
     const data = {
       years: [1960,1970,1980,1990,2000,2008,2010,2017],

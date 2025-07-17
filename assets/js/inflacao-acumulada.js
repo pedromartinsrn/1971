@@ -1,4 +1,4 @@
-// Inflacao Acumulada
+
 (function() {
   const data = [
     {year: 1774, rate: 7.82}, {year: 1775, rate: 7.41}, {year: 1776, rate: 8.46},
@@ -86,7 +86,7 @@
     {year: 2022, rate: 292.66}, {year: 2023, rate: 304.70}, {year: 2024, rate: 313.69}
 ];
     
-    // Calcula a inflação acumulada usando o primeiro ano como base
+
     const baseCPI = data[0].rate;
     const cumulativeInflation = data.map(item => ({
       year: item.year,

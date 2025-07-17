@@ -1,4 +1,4 @@
-//Desigualdade de renda
+
 (function() {
 const Data = [
 {"year":1947,"value":0.376},{"year":1948,"value":0.371},{"year":1949,"value":0.378},{"year":1950,"value":0.379},{"year":1951,"value":0.363},{"year":1952,"value":0.368},{"year":1953,"value":0.359},

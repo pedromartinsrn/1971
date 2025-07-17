@@ -1,4 +1,4 @@
-// M2 Supply
+
 (function() {
 
 const Data = [

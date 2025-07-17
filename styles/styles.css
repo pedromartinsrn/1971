@@ -1,7 +1,7 @@
 body {
-    -webkit-user-select: none; /* Safari */
-    -ms-user-select: none; /* IE 10 and IE 11 */
-    user-select: none; /* Standard syntax */
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
     font-family: "Liter";
     margin: 0;
     padding: 0;
@@ -217,7 +217,7 @@ body {
     max-width: 100%;
   }
 
-  /* Constrain the large oil production chart to consistent size */
+
   #oleos-vegetais {
     width: 784px;
   }

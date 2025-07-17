@@ -1,4 +1,4 @@
-// Share of Young Adults Living with a Parent
+
 (function() {
     const Data = [
       {

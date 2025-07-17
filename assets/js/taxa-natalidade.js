@@ -1,4 +1,4 @@
-// Taxa de Natalidade Mundial
+
 (function() {
   const data = [
     {year: 1950, rate: 4.852}, {year: 1951, rate: 4.816}, {year: 1952, rate: 5.001},

@@ -15,21 +15,21 @@ function toggleMenu() {
     document.getElementById('menu-list').classList.toggle('show');
     document.querySelector('.menu-icon').classList.toggle('open');
     
-    // Toggle the fixed title with slide-down animation
+
     const fixedTitle = document.querySelector('.fixed-menu-title');
     const menuContainer = document.querySelector('.menu-container');
     
     if (document.getElementById('menu-list').classList.contains('show')) {
         menuContainer.style.display = 'flex';
-        // Let the display take effect before starting animation
+
         setTimeout(() => {
             fixedTitle.classList.add('show');
         }, 10);
     } else {
         fixedTitle.classList.remove('show');
-        // Wait for animation to complete before hiding
+
         setTimeout(() => {
-            // On mobile we still want to show the menu container with the hamburger icon
+
             if (window.innerWidth < 768) {
                 menuContainer.style.display = 'block';
             }
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     menuContainer.style.display = 'flex';
                     if (fixedSignature) fixedSignature.style.display = 'block';
                     
-                    // Only show title if menu is open
+
                     if (document.getElementById('menu-list').classList.contains('show')) {
                         setTimeout(() => {
                             if (fixedTitle) fixedTitle.classList.add('show');
@@ -162,7 +162,7 @@ function showComments(chartId) {
             <span class="comments-close">×</span>
         </div>
         <div class="comments-list">
-            <!-- Comments will appear here -->
+
         </div>
         <div class="comments-input-container">
             <textarea placeholder="Adicione um comentário..."></textarea>
@@ -262,7 +262,7 @@ function setupIcons(chartId) {
     const explanationButton = document.createElement('button');
     explanationButton.className = 'explanation-button';
     
-    // Create and add the info icon instead of text
+
     const infoIcon = document.createElement('img');
     infoIcon.src = 'assets/img/info-icon.svg';
     infoIcon.alt = 'Explicação';
@@ -275,16 +275,14 @@ function setupIcons(chartId) {
         const explanation = container.querySelector('.explanation');
         const isMobile = window.innerWidth < 768;
 
-        // Define touch handlers at this scope
+
         let touchHandlers = null;
 
         if (!explanation.classList.contains('show')) {
             if (isMobile) {
-                
                 const handle = document.createElement('div');
                 handle.className = 'explanation-handle';
                 explanation.insertBefore(handle, explanation.firstChild);
-                
                 
                 const closeBtn = document.createElement('div');
                 closeBtn.className = 'explanation-close';
@@ -300,7 +298,6 @@ function setupIcons(chartId) {
                 overlay.addEventListener('click', () => handleClose(true), { passive: true });
                 closeBtn.addEventListener('click', () => handleClose(true), { passive: true });
 
-                
                 touchHandlers = {
                     startY: 0,
                     currentY: 0,
@@ -312,7 +309,6 @@ function setupIcons(chartId) {
                         touchHandlers.currentY = e.touches[0].clientY;
                         const diff = touchHandlers.currentY - touchHandlers.startY;
                         if (diff > 0) {
-                            // Convert vertical swipe to horizontal movement
                             const percentMove = (diff / window.innerHeight) * 100;
                             explanation.style.transform = `translateX(${percentMove}%)`;
                         }
@@ -359,7 +355,6 @@ function setupIcons(chartId) {
                 }
             }
 
-            
             if (touchHandlers) {
                 explanation.removeEventListener('touchstart', touchHandlers.handleTouchStart);
                 explanation.removeEventListener('touchmove', touchHandlers.handleTouchMove);
@@ -386,7 +381,7 @@ function setupIcons(chartId) {
         }
     });
     
-    // Add all icons to the single row
+
 
     iconsRow.appendChild(commentIcon);
     iconsRow.appendChild(fonteContainer);
@@ -443,7 +438,6 @@ const chartContainers = [
     if (container) {
         scriptObserver.observe(container);
         urlObserver.observe(container);
-        //setupIcons(id);
     }
 });
 
@@ -495,11 +489,10 @@ async function shareChart(shareButton) {
             ctx.drawImage(chartImage, 0, isMobile ? 120 : 150, chartWidth, chartHeight);
             
             ctx.save();
-            ctx.font = `${isMobile ? '16px' : '20px'} Liter`;
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-
-            
-            ctx.restore();
+                    ctx.font = `${isMobile ? '16px' : '20px'} Liter`;
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+        
+        ctx.restore();
         } catch (error) {
             console.error('Error creating image:', error);
         }
@@ -588,8 +581,6 @@ function formatTimestamp(timestamp) {
         day: 'numeric',
         month: 'short'
     }).replace('.', '');
-
-    
 }
 
 function loadScript(scriptId) {
@@ -611,9 +602,9 @@ async function fetchMarketStatus(marketId) {
     }
 }
 
-// Mobile Navigation Functions
+
 function getCurrentChartContainer() {
-    // Find which chart is currently most visible in the viewport
+
     const chartContainers = document.querySelectorAll('.chart-container');
     let mostVisibleChart = null;
     let maxVisibleArea = 0;
@@ -622,7 +613,7 @@ function getCurrentChartContainer() {
         const rect = container.getBoundingClientRect();
         const viewHeight = window.innerHeight || document.documentElement.clientHeight;
         
-        // Calculate how much of the element is visible
+
         const visibleHeight = Math.min(rect.bottom, viewHeight) - Math.max(rect.top, 0);
         const visibleArea = visibleHeight > 0 ? visibleHeight * rect.width : 0;
         
@@ -652,7 +643,6 @@ function toggleComments() {
         commentButton.click();
     }
     
-    // Highlight the active icon in the mobile nav
     toggleMobileNavActiveState('comment');
 }
 
@@ -665,7 +655,6 @@ function toggleSource() {
         sourceButton.click();
     }
     
-    // Highlight the active icon in the mobile nav
     toggleMobileNavActiveState('source');
 }
 
@@ -678,7 +667,6 @@ function shareCurrentChart() {
         shareButton.click();
     }
     
-    // Highlight the active icon in the mobile nav
     toggleMobileNavActiveState('share');
 }
 
@@ -694,39 +682,31 @@ function toggleMobileNavActiveState(activeType) {
     });
 }
 
-// Update scroll event listeners if any
 window.addEventListener('scroll', () => {
-    // Any scroll event handlers
 }, { passive: true });
 
-// Update resize listener
 window.addEventListener('resize', () => {
-    // Any resize handlers
 }, { passive: true });
 
 document.addEventListener('keydown', function(e) {
-    // Evita conflito com campos de input/textarea
     if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
 
     const chartContainers = Array.from(document.querySelectorAll('.chart-container'));
     const current = getCurrentChartContainer();
     let idx = chartContainers.indexOf(current);
 
-    // Navegação para cima
     if (e.key === 'ArrowUp' || e.key === 'w' || e.key === 'W') {
         if (idx > 0) {
             chartContainers[idx - 1].scrollIntoView({ behavior: 'smooth', block: 'start' });
             e.preventDefault();
         }
     }
-    // Navegação para baixo
     if (e.key === 'ArrowDown' || e.key === 's' || e.key === 'S') {
         if (idx < chartContainers.length - 1) {
             chartContainers[idx + 1].scrollIntoView({ behavior: 'smooth', block: 'start' });
             e.preventDefault();
         }
     }
-    // Q: Home
     if (e.key === 'q' || e.key === 'Q') {
         const snap = document.querySelector('.snap-container');
         if (snap) {
@@ -736,7 +716,6 @@ document.addEventListener('keydown', function(e) {
         }
         e.preventDefault();
     }
-    // Z: Menu
     if (e.key === 'z' || e.key === 'Z') {
         toggleMenu();
         e.preventDefault();

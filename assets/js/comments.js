@@ -6,7 +6,7 @@ class ChartComments {
     }
 
     async init() {
-        // Create and insert comments container
+    
         this.createCommentsUI();
         await this.loadComments();
         this.setupEventListeners();
@@ -27,7 +27,7 @@ class ChartComments {
             </form>
         `;
         
-        // Insert after the chart
+
         const chartElement = document.getElementById(this.chartId);
         chartElement.parentNode.insertBefore(container, chartElement.nextSibling);
         

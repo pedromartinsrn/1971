@@ -1,4 +1,4 @@
-//Estoque de Gado
+
 (function() {
     const Data = [
         {"year":1867,"inventory":30},{"year":1872,"inventory":35},{"year":1877,"inventory":40},{"year":1882,"inventory":45},{"year":1887,"inventory":50},

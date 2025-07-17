@@ -1,4 +1,4 @@
-// Anos para comprar uma casa
+
 (function() {
   const data = [
     { year: 1950, years: 2.3 },
@@ -55,11 +55,11 @@
           color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
             {
               offset: 0,
-              color: "rgb(40, 184, 115)", // Color at the top
+              color: "rgb(40, 184, 115)",
             },
             {
               offset: 1,
-              color: "rgb(89, 219, 155)", // Color at the bottom
+              color: "rgb(89, 219, 155)",
             },
           ]),
         },

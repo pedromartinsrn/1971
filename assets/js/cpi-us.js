@@ -1,4 +1,4 @@
-//CPI historical data
+
 (function() {
 
 const data = [
