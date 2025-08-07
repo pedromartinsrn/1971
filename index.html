@@ -16,11 +16,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <script src="assets/js/main.js"></script>
-<script src="assets/js/echarts-line.min.js"></script>
-
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="assets/js/hover-icons-jquery.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-PCPPV1KQ2B"></script>
 
-
+<!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://oqueaconteceuem1971.com/">
 <meta property="og:title" content="O que aconteceu em 1971?">
@@ -29,18 +30,18 @@
 <meta property="og:site_name" content="O que aconteceu em 1971?">
 <meta property="og:updated_time" content="2024-02-15T00:00:00+00:00">
 
-
+<!-- WhatsApp -->
 <meta property="og:image:whatsapp" content="https://oqueaconteceuem1971.com/favicon.png">
 <meta property="og:image:type:whatsapp" content="image/jpeg">
 <meta property="og:image:width:whatsapp" content="200">
 <meta property="og:image:height:whatsapp" content="200">
 
-
+<!-- LinkedIn-->
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="image" property="og:image" content="https://oqueaconteceuem1971.com/assets/img/share.jpg">
 
-
+<!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:url" content="https://oqueaconteceuem1971.com/">
 <meta name="twitter:title" content="O que aconteceu em 1971?">
@@ -54,7 +55,7 @@
   gtag('config', 'G-PCPPV1KQ2B');
 </script>
 
-
+<!-- Schema.org markup -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -70,34 +71,33 @@
 
 </head>
 <body>
-    <nav id="menu-container" class="menu-container">
-    <div class="menu-icon" onclick="toggleMenu()" tabindex="0" aria-label="Abrir ou fechar menu de navegação" role="button">
+    <div id="menu-container" class="menu-container">
+    <div class="menu-icon" onclick="toggleMenu()">
       <div class="bar"></div>
       <div class="bar"></div>
       <div class="bar"></div>
     </div>
     <ul class="menu-list" id="menu-list">
-      <li><a href="#divida-americana">Dívida Americana</a></li>
-      <li><a href="#inflacao-acumulada">Inflação Acumulada</a></li>
-      <li><a href="#m2-supply">Dólares em circulação</a></li>
-      <li><a href="#superavit-federal">Superávit/Defict Federal</a></li>
-      <li><a href="#dolar-1635">Valor de 1 dólar de 2025</a></li>
       <li><a href="#produtividade-crescimento">Produtividade vs Remuneração</a></li>
-      <li><a href="#casa-renda">Crescimento do Preço de Casas vs Renda</a></li>
-      <li><a href="#anos-casa">Anos para comprar uma casa</a></li>
-      <li><a href="#jovens-morando">Jovens morando com os pais</a></li>
-      <li><a href="#desigualdade-renda">Desigualdade de Renda Familiar</a></li>
-      <li><a href="#renda-1">Renda dos 1% mais ricos</a></li>
       <li><a href="#cpi-us">Índice de Preços ao Consumidor</a></li>
+      <li><a href="#m2-supply">Dólares em circulação</a></li>
+      <li><a href="#dolar-1635">Valor de 1 dólar de 1635</a></li>
+      <li><a href="#desigualdade-renda">Desigualdade de Renda Familiar</a></li>
+      <li><a href="#inflacao-acumulada">Inflação Acumulada</a></li>
       <li><a href="#preco-ouro">Preço do Ouro</a></li>
       <li><a href="#preco-petroleo">Preço do Petróleo</a></li>
       <li><a href="#taxa-natalidade">Filhos por mulher</a></li>
+      <li><a href="#anos-casa">Anos para comprar uma casa</a></li>
+      <li><a href="#jovens-morando">Jovens morando com os pais</a></li>
       <li><a href="#taxa-encarceramento">Taxa de encarceramento</a></li>
+      <li><a href="#divida-americana">Dívida Americana</a></li>
+      <li><a href="#superavit-federal">Superávit/Defict Federal</a></li>
       <li><a href="#primeiro-casamento">Idade no Primeiro Casamento</a></li>
       <li><a href="#remuneracao-pib">% do PIB composta por Salários</a></li>
       <li><a href="#taxa-poupanca">Taxa de poupança pessoal</a></li>
       <li><a href="#balanca-produtos">Balança de Produtos</a></li>
       <li><a href="#balanca-eua">Balança de Mercadorias</a></li>
+      <li><a href="#10-maior-renda">10% mais ricos nos EUA</a></li>
       <li><a href="#crescimento-renda">Crescimento da renda nos EUA</a></li>
       <li><a href="#diferenca-renda">Renda familiar real</a></li>
       <li><a href="#pib-salarios">PIB e Renda nos EUA (1947-2014)</a></li>
@@ -145,45 +145,48 @@
       <li><a href="#divida-federal-publico">Dívida Federal detida pelo público</a></li>
       <li><a href="#receitas-vs-despesas-federal">Receitas vs Despesas Federais</a></li>
     </ul>
-  </nav>
-<main class="snap-container" id="main-container">
-  <section class="chart-container">
-    <p id="oqueaconteceuem1971" class="oqueaconteceuem1971">O QUE ACONTECEU EM 1971?</p>
-    <div class="chart-header" id="title-prod">
-        <p class="chart-title" id="title-div-ame" style="margin-bottom:-20px;margin-top:-20px;">Dívida Americana</p>
+  </div>
+<div class="snap-container">
+
+
+  <div class="chart-container">
+  <h1 id="oqueaconteceuem1971" class="oqueaconteceuem1971">O QUE ACONTECEU EM 1971?</h1>
+  <div class="chart-header" id="title-prod">
+    <p class="chart-title" id="title-prod-cres" style="margin-bottom:-20px;margin-top:-20px;">Crescimento da Produtividade e Remuneração</p>
+  </div>
+  <div style="position: relative">
+    <!--
+    <div class="toggle-container">
+      <span class="toggle-label">Explicação</span>
+      <div class="toggle-switch" onclick="toggleExplanation()"></div>
+    </div>-->
+    <div class="graph-and-labels">
+      <div id="produtividade-crescimento" class="canvas"></div>
+      <span class="chart-inside" style="top: 26%; right: 30%;"><span style="color:#efd60b">●</span> Produtividade </span>
+      <span class="chart-inside" style="top: 70%; right: 10%;"><span style="color:#e74a3b">●</span> Remuneração </span>
     </div>
-    <div style="position: relative"> 
-      <div class="graph-and-labels">
-        <div id="divida-americana" class="canvas"></div>
+    <div class="chart-icons-hover">
+      <div class="chart-icon" onclick="toggleComments()">
+        <img src="assets/img/comment-icon.svg" alt="Comentários">
       </div>
-      <div class="explanation" style="display: none;">
-        <p>No Mercantilismo, Estados acumulavam mercadorias para aumentar seu poder.<br><br>No Capitalismo, a acumulação de capital definia a riqueza.<br><br>No Creditismo, o objetivo é acumular dívidas.<br><br>Em 1971 ocorreu o fim do Capitalismo e o início do Creditismo.</p>
+      <div class="chart-icon" onclick="toggleSource()">
+        <img src="assets/img/fonte-icon.svg" alt="Fonte">
+      </div>
+      <div class="chart-icon" onclick="shareCurrentChart()">
+        <img src="assets/img/share-icon.svg" alt="Compartilhar">
+      </div>
+      <div class="chart-icon" onclick="toggleExplanation()">
+        <img src="assets/img/explanation.svg" alt="Explicação">
       </div>
     </div>
-    <p class="fonte">EUA. Fonte: <a href="https://fiscaldata.treasury.gov/datasets/historical-debt-outstanding/historical-debt-outstanding" target="_blank">Tesouro Americano</a></p>
-  </section>
-
-  <script src="assets/js/config.js"></script>
-  <script src="assets/js/scroll-controller.js"></script>
-
-  <section class="chart-container">
-    <div class="chart-header">
-        <p class="chart-title">Inflação Acumulada</p>
+    <div class="explanation">
+      <p>Em 1971 o dólar perdeu seu lastro em ouro, permitindo aos EUA que imprimissem dinheiro sem controle.<br><br> Isso fez os preços das coisas subirem e os salários não acompanharam, apesar do avanço tecnológico ter aumentado a produtividade.</p>
     </div>
-    <div style="position: relative">
-      <div class="graph-and-labels">
-        <div id="inflacao-acumulada" class="canvas"></div>
-      </div>
-        <div class="explanation" style="display: none;">
-          <p>A disparada da inflação após 1971 é resultado direto da impressão de dinheiro.<br><br>As coisas não ficaram mais caras porque eram mais difíceis de produzir, mas sim porque o dinheiro passou a valer menos.<br><br>Centenas de anos de inflação ocorreram em poucas décadas.</p>
-        </div>
-    </div>
-    <p class="fonte">EUA. Fonte: <a href="https://inflationdata.com/articles/2022/08/10/u-s-cumulative-inflation-since-1913/" target="_blank">Inflation Data</a></p>
-  </section>
+  </div>
+  <p class="fonte">EUA. Remuneração real. Fonte: <a href="https://go.epi.org/M4z" target="_blank">Instituto de Política Econômica</a></p>
+</div>
 
-
-
-<section class="chart-container">
+<div class="chart-container">
   <div class="chart-header">
       <p class="chart-title">Quantidade de dólares em circulação</p>
   </div>
@@ -191,29 +194,84 @@
     <div class="graph-and-labels">
       <div id="m2-supply" class="canvas"></div>
     </div>
+    <div class="chart-icons-hover">
+      <div class="chart-icon" onclick="toggleComments()">
+        <img src="assets/img/comment-icon.svg" alt="Comentários">
+      </div>
+      <div class="chart-icon" onclick="toggleSource()">
+        <img src="assets/img/fonte-icon.svg" alt="Fonte">
+      </div>
+      <div class="chart-icon" onclick="shareCurrentChart()">
+        <img src="assets/img/share-icon.svg" alt="Compartilhar">
+      </div>
+      <div class="chart-icon" onclick="toggleExplanation()">
+        <img src="assets/img/explanation.svg" alt="Explicação">
+      </div>
+    </div>
     <div class="explanation" style="display: none;">
-      <p>Antes de 1971, o Estado precisava comprar ouro para poder imprimir mais dólares.<br><br>Depois, com o dólar sem lastro em ouro, passou a poder criar quanto dinheiro quisesse.<br><br>E foi exatamente isso que aconteceu.</p>
+      <p>Antes de 1971 o Estado precisava comprar ouro se quisesse imprimir mais dólares.<br><br>
+        Depois, com o dólar sem lastro em ouro, ele podia criar quanto dinheiro quisesse.<br><br>
+        E foi isso que ele fez.<!-- Mas assim como imprimir diplomas não cria mais doutores, 
+        imprimir dólares não aumenta a riqueza: só dilui quem os poupa e enriquece os donos da impressora.-->
+      </p>
     </div>
   </div>
   <p class="fonte">EUA. Fonte: <a href="https://www.longtermtrends.net/m2-money-supply-vs-inflation/" target="_blank">Long Term Trends</a></p>
-</section>
+</div>
 
-<section class="chart-container">
+<div class="chart-container">
   <div class="chart-header">
-      <p class="chart-title">Superávit/Déficit Federal</p>
+      <p class="chart-title">Dívida Americana</p>
+  </div>
+  <div style="position: relative">
+    <div class="graph-and-labels">
+      <div id="divida-americana" class="canvas"></div>
+    </div>
+    <div class="chart-icons-hover">
+      <div class="chart-icon" onclick="toggleComments()">
+        <img src="assets/img/comment-icon.svg" alt="Comentários">
+      </div>
+      <div class="chart-icon" onclick="toggleSource()">
+        <img src="assets/img/fonte-icon.svg" alt="Fonte">
+      </div>
+      <div class="chart-icon" onclick="shareCurrentChart()">
+        <img src="assets/img/share-icon.svg" alt="Compartilhar">
+      </div>
+      <div class="chart-icon" onclick="toggleExplanation()">
+        <img src="assets/img/explanation.svg" alt="Explicação">
+      </div>
+    </div>
+    <div class="explanation" style="display: none;">
+      <p>No Mercantilismo, Estados acumulavam mercadorias para aumentar seu poder.
+        <br><br>No Capitalismo, a acumulação de capital definia a riqueza.
+        <br><br>No Creditismo, o objetivo é acumular dívidas.
+        <br><br>Em 1971 ocorreu o fim do Capitalismo e o começo do Creditismo.
+      </p>
+    </div>
+  </div>
+  <p class="fonte">EUA. Fonte: <a href="https://fiscaldata.treasury.gov/datasets/historical-debt-outstanding/historical-debt-outstanding" target="_blank">Tesouro Americano</a></p>
+</div>
+
+<div class="chart-container">
+  <div class="chart-header">
+      <p class="chart-title">Superávit/Defict Federal</p>
   </div>
   <div style="position: relative">
     <div class="graph-and-labels">
       <div id="superavit-federal" class="canvas"></div>
     </div>
     <div class="explanation" style="display: none;">
-      <p>No Creditismo, acumular capital não é desejado.<br><br>O Estado é incentivado a gastar mais do que arrecada, pois assim acumula o que realmente tem valor: dívidas, as quais pagará no futuro imprimindo mais dinheiro.</p>
+      <p>No Creditismo, acumular capital não é desejado.<!-- Como o dinheiro sempre se desvaloriza, o capital tornou-se um passivo.-->
+        <br><br>O Estado é, então, incentivado a gastar mais do que arrecada, pois assim ele acumula o que realmente tem valor:
+        <br><br>Dívidas, as quais ele pagará no futuro imprimindo mais do próprio dinheiro.
+        
+      </p>
     </div>
   </div>
   <p class="fonte">EUA. Fonte: <a href="https://fred.stlouisfed.org/series/FYFSD" target="_blank">FRED</a></p>
-</section>
+</div>
 
-    <section class="chart-container">
+    <div class="chart-container">
       <div class="chart-header">
         <p class="chart-title">Valor de 1 dólar de 2025</p>
       </div>
@@ -222,44 +280,62 @@
         <div id="dolar-1635" class="canvas"></div>
       </div>
         <div class="explanation" style="display: none;">
-          <p>Um dólar de 1635 valia US$ 0,61 em 1935, perdendo 40% do seu valor em 300 anos.<br><br>Já o dólar atual perdeu 40% do seu valor apenas nos últimos 20 anos.<br><br>No Creditismo, o Estado sempre se endivida e reduz o peso dessa dívida diluindo a moeda na qual a dívida foi feita.</p>
+          <p>$1 de 1635 valia $0.61 em 1935, perdendo 40% do seu valor em 300 anos.<br><br>Já o dólar atual perdeu 40% do seu valor apenas nos últimos 20 anos.
+            <br><br>No Creditismo, o Estado sempre se endivida e reduz o peso dessa dívida através da diluição da moeda na qual a dívida foi feita.
+          </p>
         </div>
       </div>
       <p class="fonte">Fonte: <a href="https://www.in2013dollars.com/us/inflation/1860?amount=1" target="_blank">Bureau of Labor Statistics</a></p>
-    </section>
+    </div>
 
 
-    <section class="chart-container">
-      <div class="chart-header" id="title-prod">
-        <p class="chart-title" id="title-prod-cres">Crescimento da Produtividade e Remuneração</p>
+  <div class="chart-container">
+    <div class="chart-header">
+        <p class="chart-title">Inflação Acumulada</p>
+    </div>
+    <div style="position: relative">
+      <div class="graph-and-labels">
+        <div id="inflacao-acumulada" class="canvas"></div>
       </div>
-      <div style="position: relative">
-        <div class="graph-and-labels">
-          <div id="produtividade-crescimento" class="canvas"></div>
-          <span class="chart-inside" style="top: 26%; right: 30%;"><span style="color:#efd60b">●</span> Produtividade</span>
-          <span class="chart-inside" style="top: 70%; right: 10%;"><span style="color:#e74a3b">●</span> Remuneração</span>
+      <div class="chart-icons-hover">
+        <div class="chart-icon" onclick="toggleComments()">
+          <img src="assets/img/comment-icon.svg" alt="Comentários">
         </div>
-        <div class="explanation">
-          <p>Em 1971, o dólar perdeu seu lastro em ouro, permitindo aos EUA imprimir dinheiro sem controle.<br><br>Isso fez com que os preços subissem, enquanto os salários não acompanharam, apesar do avanço tecnológico e do aumento da produtividade.</p>
+        <div class="chart-icon" onclick="toggleSource()">
+          <img src="assets/img/fonte-icon.svg" alt="Fonte">
+        </div>
+        <div class="chart-icon" onclick="shareCurrentChart()">
+          <img src="assets/img/share-icon.svg" alt="Compartilhar">
+        </div>
+        <div class="chart-icon" onclick="toggleExplanation()">
+          <img src="assets/img/explanation.svg" alt="Explicação">
         </div>
       </div>
-      <p class="fonte">EUA. Remuneração real. Fonte: <a href="https://go.epi.org/M4z" target="_blank">Instituto de Política Econômica</a></p>
-    </section>
+        <div class="explanation" style="display: none;">
+          <p>A disparada da inflação pós-71 é resutado direto da impressão de dinheiro.<br><br><!-- O preço da comida não aumentou por conta de um período de seca ou frio excessivo,-->
+            As coisas não ficaram mais caras porque eram mais difíceis de produzir, mas sim porque o dinheiro valia menos.<br><br> Centenas de anos de inflação ocorreram em décadas.
+          </p>
+        </div>
+    </div>
+    <p class="fonte">EUA. Fonte: <a href="https://inflationdata.com/articles/2022/08/10/u-s-cumulative-inflation-since-1913/" target="_blank">Inflation Data</a></p>
+  </div>
 
-<section class="chart-container">
+<div class="chart-container">
   <p class="chart-title">Crescimento do Preço de Casas vs Renda</p>
   <div style="position: relative">
     <div class="graph-and-labels">
     <div id="casa-renda" class="canvas"></div>
     </div>
     <div class="explanation" style="display: none;">
-      <p>O preço das casas também aumentou muito após 1971.<br><br>Quem já possuía propriedade viu o valor da sua casa aumentar, enquanto quem não possuía ficou ainda mais distante de conquistar uma moradia.</p>
+      <p>O preço das casas também aumentou muito depois de 1971.
+        <br><br>Quem já possui propriedade vê o valor da sua casa aumentar, e quem não possui fica ainda mais longe de ter uma moradia.
+      </p>
     </div>
   </div>
   <p class="fonte">EUA. Fonte: Federal Reserve Economic Data</p>
-</section>
+</div>
 
-<section class="chart-container">
+<div class="chart-container">
   <div class="chart-header">
       <p class="chart-title">É preciso economizar por quantos anos para comprar uma casa?</p>
   </div>
@@ -268,13 +344,14 @@
       <div id="anos-casa" class="canvas"></div>
       </div>
       <div class="explanation" style="display: none;">
-      <p>Com o valor das casas aumentando muito mais do que a renda, o cidadão médio precisou trabalhar três vezes mais do que seus pais para comprar uma casa.</p>
+        <p>Com o valor das casas aumentando muito mais do que a renda, o cidadão médio precisou trabalhar três vezes mais do que seus pais para comprar uma casa.
+        </p>
       </div>
   </div>
   <p class="fonte">EUA. Fonte: Federal Reserve Economic Data</p>
-</section>
+</div>
 
-<section class="chart-container">
+<div class="chart-container">
   <div class="chart-header">
       <p class="chart-title">Adultos jovens morando com os pais</p>
   </div>
@@ -283,34 +360,49 @@
       <div id="jovens-morando" class="canvas"></div>
     </div>
     <div class="explanation" style="display: none;">
-      <p>Com o custo de vida aumentando e as casas tornando-se mais caras, não é surpreendente que jovens adultos passem a morar mais tempo com os pais.</p>
+      <p>Com o custo de viver aumentando e casas tornando-se mais caras, não é supreendente que jovens adultos passem a morar mais tempo com os pais.
+      </p>
     </div>
   </div>
   <p class="fonte">EUA. Fonte: <a href="https://www.pewresearch.org/social-trends/2021/03/05/a-year-of-u-s-public-opinion-on-the-coronavirus-pandemic/" target="_blank">PEW Research</a></p>
-</section>
+</div>
 
 
-  <section class="chart-container">
+  <div class="chart-container">
     <div class="chart-header">
         <p class="chart-title">Desigualdade de Renda Familiar</p>
     </div>
     <div style="position: relative">
         <div id="desigualdade-renda" class="canvas"></div>
+        <div class="chart-icons-hover">
+          <div class="chart-icon" onclick="toggleComments()">
+            <img src="assets/img/comment-icon.svg" alt="Comentários">
+          </div>
+          <div class="chart-icon" onclick="toggleSource()">
+            <img src="assets/img/fonte-icon.svg" alt="Fonte">
+          </div>
+          <div class="chart-icon" onclick="shareCurrentChart()">
+            <img src="assets/img/share-icon.svg" alt="Compartilhar">
+          </div>
+          <div class="chart-icon" onclick="toggleExplanation()">
+            <img src="assets/img/explanation.svg" alt="Explicação">
+          </div>
+        </div>
     </div>
     <p class="fonte">EUA. Fonte: <a href="https://fred.stlouisfed.org/series/GINIALLRF" target="_blank">FRED</a></p>
-  </section>
+  </div>
 
-  <section class="chart-container">
+  <div class="chart-container">
     <div class="chart-header">
         <p class="chart-title">Renda dos 1% mais ricos</p>
     </div>
     <div style="position: relative">
         <div id="renda-1" class="canvas"></div>
     </div>
-    <p class="fonte">Em relação ao total. EUA. Fonte: <a href="https://wid.world/country/usa/" target="_blank">World Inequality Database</a>.</p>
-  </section>
+    <p class="fonte">Em relação ao total. EUA. Fonte: <a href="https://wid.world/country/usa/" target="_blank">World Inequality Database.</a></p>
+  </div>
 
-  <section class="chart-container">
+  <div class="chart-container">
     <div class="chart-header">
       <p class="chart-title">Índice de Preços ao Consumidor</p>
     </div>
@@ -319,14 +411,17 @@
         <div id="cpi-us" class="canvas"></div>
       </div>
       <div class="explanation" style="display: none;">
-        <p>O aumento de preços afeta principalmente os mais pobres. Por exemplo, quando a carne fica mais cara, o rico não muda o seu almoço, mas o pobre passa a comer apenas frango.<br><br>Além disso, a inflação fomenta a desigualdade, pois aumenta, por exemplo, o preço dos imóveis. Quem é dono de imóveis aumenta seu patrimônio, enquanto quem não é fica ainda mais distante de ter uma moradia.</p>
-      </div>
+        O aumento de preços afeta principalmente os mais pobres. Por exemplo, quando a carne fica mais cara
+        o rico não muda o seu almoço, mas o pobre passa a comer apenas frango.<br><br>
+        Além disso, também fomenta a desigualdade, pois aumenta, por exemplo, o preço de imóveis. Quem é dono de imóveis
+        aumenta seu patrimônio e quem não é fica ainda mais longe de ter uma moradia.
+      </p>      </div>
     </div>
     <p class="fonte">EUA. Fonte: <a href="https://www.measuringworth.com/docs/cpistudyrev.pdf" target="_blank">Universidade de Illinois, Chicago</a></p>
-  </section>
+  </div>
 
 
-  <section class="chart-container">
+  <div class="chart-container">
     <div class="chart-header">
         <p class="chart-title">Preço do Ouro</p>
     </div>
@@ -334,9 +429,9 @@
         <div id="preco-ouro" class="canvas"></div>
     </div>
     <p class="fonte">Mundo. Fonte: <a href="https://www.worldbank.org/en/research/commodity-markets" target="_blank">Banco Mundial</a></p>
-  </section>
+  </div>
 
-  <section class="chart-container">
+  <div class="chart-container">
     <div class="chart-header">
         <p class="chart-title">Preço do Petróleo</p>
     </div>
@@ -344,9 +439,9 @@
         <div id="preco-petroleo" class="canvas"></div>
     </div>
     <p class="fonte">Mundo. Fonte: <a href="https://www.eia.gov/dnav/pet/hist/LeafHandler.ashx?n=pet&s=f000000__3&f=a" target="_blank">U.S. Energy Information Administration</a></p>
-  </section>
+  </div>
 
-  <section class="chart-container">
+  <div class="chart-container">
     <div class="chart-header">
         <p class="chart-title">Filhos por mulher</p>
     </div>
@@ -354,10 +449,10 @@
         <div id="taxa-natalidade" class="canvas"></div>
     </div>
     <p class="fonte">Mundo. Fonte: <a href="https://ourworldindata.org/fertility-rate" target="_blank">Our World In Data</a></p>
-  </section>
+  </div>
 
 
-  <section class="chart-container">
+  <div class="chart-container">
     <div class="chart-header">
         <p class="chart-title">Taxa de encarceramento</p>
     </div>
@@ -365,9 +460,9 @@
         <div id="taxa-encarceramento" class="canvas"></div>
     </div>
     <p class="fonte">EUA. Fonte: <a href="https://pt.m.wikipedia.org/wiki/Ficheiro:U.S._incarceration_rates_1925_onwards.png" target="_blank">Bureau of Justice Statistics</a></p>
-  </section>
+  </div>
 
-  <section class="chart-container">
+  <div class="chart-container">
     <div class="chart-header">
         <p class="chart-title">Idade no Primeiro Casamento</p>
     </div>
@@ -375,273 +470,271 @@
         <div id="primeiro-casamento" class="canvas"></div>
     </div>
     <p class="fonte">EUA. Fonte: <a href="https://www.census.gov/data/tables/time-series/demo/families/marital.html" target="_blank">US Census</a></p>
-  </section>
+  </div>
 
-  <section class="chart-container">
+  <div class="chart-container">
     <div class="chart-header">
         <p class="chart-title">% do PIB composta por Salários</p>
     </div>
     <div style="position: relative">
         <div id="remuneracao-pib" class="canvas"></div>
     </div>
-    <p class="fonte">EUA. Fonte: <a href="https://fred.stlouisfed.org/series/W270RE1A156NBEA" target="_blank">FRED</a></p>
-  </section>
+    <p class="fonte">EUA. Fonte:<a href="https://fred.stlouisfed.org/series/W270RE1A156NBEA" target="_blank">FRED</a></p>
+  </div>
 
-  <section class="chart-container">
+  <div class="chart-container">
     <div class="chart-header">
         <p class="chart-title">Taxa de poupança pessoal</p>
     </div>
     <div style="position: relative">
         <div id="taxa-poupanca" class="canvas"></div>
     </div>
-    <p class="fonte">EUA. Fonte: <a href="https://tradingeconomics.com/united-states/personal-savings" target="_blank">Trading Economics</a></p>
-  </section>
+    <p class="fonte">EUA. Fonte:<a href="https://tradingeconomics.com/united-states/personal-savings" target="_blank">Trading Economics</a></p>
+  </div>
 
-  <section class="chart-container">
+  <div class="chart-container">
     <div class="chart-header">
         <p class="chart-title">Balança Comercial de Produtos</p>
     </div>
     <div style="position: relative">
         <div id="balanca-produtos" class="canvas"></div>
     </div>
-    <p class="fonte">EUA. Fonte: <a href="https://fred.stlouisfed.org/series/XTNTVA01USM667S" target="_blank">FRED</a></p>
-  </section>
+    <p class="fonte">EUA. Fonte:<a href="https://fred.stlouisfed.org/series/XTNTVA01USM667S" target="_blank">FRED</a></p>
+  </div>
   
   
-  <section class="chart-container">
+  <div class="chart-container">
     <p class="chart-title">Balança Comercial de Mercadorias nos EUA</p>
     <picture>
       <source srcset="assets/img/grafico-44.webp" type="image/webp">
-      <img src="assets/img/grafico-44.jpg" id="balanca-eua" alt="Balança comercial de mercadorias nos EUA, gráfico de linha mostrando evolução histórica" loading="lazy">
+      <img src="assets/img/grafico-44.jpg" id="balanca-eua" alt="balanca-eua" loading="lazy">
   </picture>  
   <p class="fonte">Fonte: US Census Bureau, Department of Foreign Trade</p>
-  </section>
+  </div>
 
 
 
 
   <!--
 
-  <section class="chart-container">
+  <div class="chart-container">
     <p class="chart-title">Salários de executivos vs média</p>
      <div style="position: relative">
       <div id="salarios-ceo-normal" class="canvas"></div>
       <p class="fonte">EUA. Fonte:<a href="https://eml.berkeley.edu/~saez/pikettyqje.pdf" target="_blank">UC Berkeley.</a></p>
      </div>
-  </section>
+  </div>
 -->
 
-  <section class="chart-container">
-    <p class="chart-title">Crescimento da renda nos EUA</p>
+  <div class="chart-container">
+    <p class="chart-title">Crescimento da renda nos EUA</small></p>
     <div style="position: relative">
     <picture>
       <source srcset="assets/img/grafico-4.webp" type="image/webp">
-      <img src="assets/img/grafico-4.jpg" id="crescimento-renda" alt="Crescimento da renda nos EUA, gráfico de linhas mostrando diferentes faixas de renda ao longo do tempo" loading="lazy">
+      <img src="assets/img/grafico-4.jpg" id="crescimento-renda" alt="crescimento-renda" loading="lazy">
       <span class="chart-inside" style="top: 33%; right:45%; font-size: calc(0.5em + 1.5vw)">90% menor<br> renda</span>
       <span class="chart-inside" style="top: 58%; right:-3%; font-size: calc(0.5em + 1.5vw)">1% maior<br> renda</span>
   </picture>
-</section>  
+</div>  
     <p class="fonte">Fonte: <a href="https://www.npr.org/sections/money/2015/02/11/384988128/the-fall-and-rise-of-u-s-inequality-in-2-graphs" target="_blank">NPR, A queda e o crescimento da desigualdade de renda estadunidense</a></p>
-  </section>
+  </div>
   
-  <section class="chart-container">
+  <div class="chart-container">
     <p class="chart-title">Renda familiar real entre 1947 e 2016, como uma % do nível de 1973</p>
     <div style="position: relative">
     <picture>
       <source srcset="assets/img/grafico-3.webp" type="image/webp">
-      <img src="assets/img/grafico-3.jpg" id="diferenca-renda" alt="Renda familiar real nos EUA entre 1947 e 2016, gráfico de linhas comparando diferentes percentis" loading="lazy">
+      <img src="assets/img/grafico-3.jpg" id="diferenca-renda" alt="diferenca-renda" loading="lazy">
       <span class="chart-inside" style="top: 10%; right:20%; font-size: calc(0.7em + 1.2vw)">95% maior renda</span>
       <span class="chart-inside" style="top: 24%; right:1%; font-size: calc(0.7em + 1.2vw)"><small>Mediana</small></span>
       <span class="chart-inside" style="top: 52%; right:-3%; font-size: calc(0.7em + 1.2vw)">20% menor renda</span>
   </picture>  
-</section>
+</div>
     <p class="fonte">Fonte: Cálculos do CBPP baseados em dados do Bureau de Censos dos EUA.</p>
-  </section>
+  </div>
 
-  <section class="chart-container">
+  <div class="chart-container">
     <p class="chart-title">PIB e Renda nos EUA (1947-2014)</p>
     <div style="position: relative">
     <picture>
-      <img src="assets/img/grafico-2.jpg" id="pib-salarios" alt="PIB e renda nos EUA de 1947 a 2014, gráfico de linhas com diferentes ajustes de renda" loading="lazy">
+      <!--<source srcset="assets/img/grafico-2.webp" type="image/webp">-->
+      <img src="assets/img/grafico-2.jpg" id="pib-salarios" alt="pib-salarios" loading="lazy">
       <span class="chart-inside" style="top: 4%; right:15%; font-size: calc(0.5em + 1.2vw)">PIB <i>por pessoa</i></span>
       <span class="chart-inside" style="top: 23%; right:0%; font-size: calc(0.5em + 1.2vw)">PIB <small><i>por trabalhador</i></small></span>
       <span class="chart-inside" style="top: 38%; right:2%; font-size: calc(0.35em + 1vw)">Renda média<br> <small><i>ajustada pelo PIB</i></small></span>
       <span class="chart-inside" style="top: 52%; right:2%; font-size: calc(0.35em + 1vw)">Renda média<br> <small><i>ajustada pelo IPC</i></small></span>
       <span class="chart-inside" style="top: 73%; right:10%; font-size: calc(0.5em + 1.2vw)">Renda Mediana<br> <small><i>ajustada pelo IPC</i></small></span>
     </picture>
-</section> 
+</div> 
     <p class="fonte">Fontes: Departamento de Análise Econômica (BEA), Departamento de Estatísticas do Trabalho (BLS)</p>
-  </section>
-  <section class="chart-container">
-      <img src="assets/img/grafico-9.jpg" alt="Gráfico de linha mostrando tendência econômica relevante ao tema do site" loading="lazy">
-  </section>
+  </div>
+  <div class="chart-container">
+    <img src="assets/img/grafico-9.jpg" alt="Image 9" loading="lazy">
+  </div>
 
-    <section class="chart-container" style="position: relative">
+    <div class="chart-container" style="position: relative">
       <p class="chart-title">EUA se tornou uma nação de casais com dupla renda.</p>
       <div style="position: relative">
       <picture>
         <source srcset="assets/img/grafico-10.webp" type="image/webp">
-        <img src="assets/img/grafico-10.jpg" alt="Gráfico mostrando a evolução de casais com dupla renda nos EUA" loading="lazy">
+        <img src="assets/img/grafico-10.jpg" alt="Image 10" loading="lazy"><!--algum bug com a cloudflare aqu carregando antigo-->
       </picture>
         <span class="chart-inside" style="top: 7%; right: 10%; font-size: calc(0.6em + 1.5vw);">Casal trabalha</span>
         <span class="chart-inside" style="top: 55%; right: -5%; font-size: calc(0.6em + 1.5vw)">Só marido trabalha</span>
         <span class="chart-inside" style="top: 74%; right: -5%; font-size: calc(0.6em + 1.5vw)">Só esposa trabalha</span>
       </div>
       <p class="fonte">Fonte: <a href="https://taxfoundation.org/data/all/federal/america-has-become-nation-dual-income-working-couples/" target="_blank">Tax Foundation</a></p>
-    </section>
+    </div>
     
-  <section class="chart-container">
-      <img src="assets/img/grafico-37.jpg" alt="Gráfico de linha do índice SP500 Preço/Lucro ao longo do tempo" id="sp-500-PL" loading="lazy">
-  </section>
+  <div class="chart-container">
+    <img src="assets/img/grafico-37.jpg" alt="sp-500-PL" id="sp-500-PL" loading="lazy">
+  </div>
 
-  <section class="chart-container">
-      <img src="assets/img/grafico-39.jpg" alt="Gráfico de linha mostrando horas de trabalho necessárias para adquirir SP500" id="horas-sp-500" loading="lazy">
-  </section>
-  <section class="chart-container">
-      <img src="assets/img/grafico-38.jpg" alt="Gráfico de linha da relação Preço/Lucro de Shiller para o SP500" id="sp-500-PL-Shiller" loading="lazy">
-  </section>
-  <section class="chart-container">
-      <img src="assets/img/grafico-40.jpg" alt="Gráfico comparando especulação e produção ao longo do tempo" id="especulacao-producao" loading="lazy" onload="if(window.innerWidth > 768) this.style.width='30%';">
-  </section>
-  <section class="chart-container">
-      <img src="assets/img/grafico-41.jpg" alt="Gráfico de linha mostrando a capitalização por setor econômico" id="capitalizacao-setores" loading="lazy">
-  </section>
-  <section class="chart-container">
-      <img src="assets/img/grafico-47.jpg" alt="Gráfico de linha das taxas de juros desde 3000 a.C." id="taxas-de-juros-3000ac" loading="lazy">
-  </section>
-  <section class="chart-container">
-      <img src="assets/img/grafico-48.jpg" alt="Gráfico de linha do retorno de títulos públicos ao longo do tempo" id="retornos-titulos-10" loading="lazy">
-  </section>
-  <section class="chart-container">
-      <img src="assets/img/grafico-49.jpg" alt="Gráfico de linha mostrando energia per capita ao longo do tempo" id="energia-per-capita" loading="lazy">
-  </section>
-  <section class="chart-container">
-      <img src="assets/img/grafico-50.jpg" alt="Gráfico de linha da relação energia/PIB nos países do G7" id="energia-pib-g7" loading="lazy">
-  </section>
-  <section class="chart-container">
-      <img src="assets/img/grafico-51.jpg" alt="Gráfico de linha do consumo de energia mundial ao longo do tempo" id="consumo-energia-mundial" loading="lazy">
-  </section>
-  <section class="chart-container">
-      <img src="assets/img/grafico-52.jpg" alt="Gráfico de linha da posição ideológica nos EUA ao longo do tempo" id="posicao-ideologica-eua" loading="lazy">
-  </section>
-  <section class="chart-container">
-      <img src="assets/img/grafico-53.jpg" alt="Gráfico de linha sobre discursos políticos nos EUA" id="discursos-politicos" loading="lazy">
-  </section>
-  <section class="chart-container">
-      <img src="assets/img/grafico-54.jpg" alt="Gráfico de linha dos problemas mais importantes segundo a população" id="problemas-mais-importantes" loading="lazy">
-  </section>
-  <section class="chart-container">
-      <img src="assets/img/grafico-55.jpg" alt="Gráfico de linha mostrando o número de páginas do Registro Federal ao longo do tempo" id="paginas-registro-federal" loading="lazy">
-  </section>
-  <section class="chart-container">
-      <img src="assets/img/grafico-56.jpg" alt="Gráfico de linha dos objetivos essenciais ao longo do tempo" id="objetivos-essenciais" loading="lazy">
-  </section>
-  <section class="chart-container">
-      <img src="assets/img/grafico-57.jpg" alt="Gráfico de linha dos gastos com educação ao longo do tempo" id="gastos-educacao" loading="lazy">
-  </section>
-  <section class="chart-container">
-      <img src="assets/img/grafico-58.jpg" alt="Gráfico de linha mostrando advogados por pessoa ao longo do tempo" id="advogados-por-pessoa" loading="lazy">
-  </section>
-  <section class="chart-container">
-      <img src="assets/img/grafico-59.jpg" alt="Gráfico de linha de doutorados em física ao longo do tempo" id="doutorados-fisica" loading="lazy">
-  </section>
-  <section class="chart-container">
-      <img src="assets/img/grafico-63.jpg" alt="Gráfico de linha mostrando a idade média no divórcio ao longo do tempo" id="divorcio-idade" loading="lazy">
-  </section>
-  <section class="chart-container">
-      <img src="assets/img/grafico-64.jpg" alt="Gráfico de linha mostrando a porcentagem de famílias em situação de pobreza ao longo do tempo" id="familias-pobreza" loading="lazy">
-  </section>
-  <section class="chart-container">
-      <img src="assets/img/grafico-67.jpg" alt="Gráfico de linha da obesidade em crianças ao longo do tempo" id="obesidade-crianças" loading="lazy">
-  </section>
-  <section class="chart-container">
-      <img src="assets/img/grafico-68.jpg" alt="Gráfico de linha dos gastos com saúde e educação ao longo do tempo" id="gasto-saude-educacao" loading="lazy">
-  </section>
-  <section class="chart-container">
-      <img src="assets/img/grafico-69.jpg" alt="Gráfico de linha mostrando a evolução do número de médicos e administradores ao longo do tempo" id="medicos-administradores" loading="lazy">
-  </section>
-  <section class="chart-container">
-      <img src="assets/img/grafico-70.jpg" alt="Gráfico de linha do consumo de óleos vegetais ao longo do tempo" id="oleos-vegetais" loading="lazy">
-  </section>
-  <section class="chart-container">
-      <img src="assets/img/grafico-72.jpg" alt="Gráfico de linha do rebanho de vacas ao longo do tempo" id="rebanho-vacas" loading="lazy">
-  </section>
-  <section class="chart-container">
-      <img src="assets/img/grafico-73.jpg" alt="Gráfico de linha da dieta estadunidense ao longo do tempo" id="dieta-estadunidense" loading="lazy">
-  </section>
-  <section class="chart-container">
-      <img src="assets/img/grafico-74.jpg" alt="Gráfico de linha da disponibilidade de alimentos ao longo do tempo" id="disponibilidade-alimentos" loading="lazy">
-  </section>
-  <section class="chart-container">
-      <img src="assets/img/grafico-14.jpg" alt="Gráfico de linha do preço da lata de Campbell ao longo do tempo" id="preco-lata-campbell" loading="lazy">
-  </section>
-  <section class="chart-container">
-      <img src="assets/img/grafico-17.jpg" alt="Gráfico de linha do IPC de eletricidade, alimentos e frutas ao longo do tempo" id="ipc-eletricidade-alimentos-frutas" loading="lazy">
-  </section>
-  <section class="chart-container">
-      <img src="assets/img/grafico-18.jpg" alt="Gráfico de linha do preço de uma casa em relação à renda ao longo do tempo" id="preco-casa-renda" loading="lazy">
-  </section>
-  <section class="chart-container">
-      <img src="assets/img/grafico-19.jpg" alt="Gráfico de linha mostrando o preço de uma casa em relação ao salário mínimo ao longo do tempo" id="preco-casa-salario-minimo" loading="lazy">
-  </section>
-  <section class="chart-container">
-      <img src="assets/img/grafico-20.jpg" alt="Gráfico de linha do preço de uma casa em relação aos aluguéis em Amsterdã ao longo do tempo" id="preco-casa-alugueis-amsterdao" loading="lazy">
-  </section>
-  <section class="chart-container">
-      <img src="assets/img/grafico-23.jpg" alt="Gráfico de linha das reservas de ouro em relação ao preço ao longo do tempo" id="reservas-ouro-preco" loading="lazy">
-  </section>
-  <section class="chart-container">
-      <img src="assets/img/grafico-24.jpg" alt="Gráfico de linha de episódios de hiperinflação ao longo do tempo" id="episodios-hiperinflacao" loading="lazy">
-  </section>
-  <section class="chart-container">
-      <img src="assets/img/grafico-25.jpg" alt="Gráfico de linha da ocorrência de 'Ajustado por Inflação' ao longo do tempo" id="ajustado-por-inflacao" loading="lazy">
-  </section>
-  <section class="chart-container">
-      <img src="assets/img/grafico-26.jpg" alt="Gráfico de linha da ocorrência de 'Revisão por pares' ao longo do tempo" id="revisao-por-pares" loading="lazy">
-  </section>
-  <section class="chart-container">
-      <img src="assets/img/grafico-27.jpg" alt="Gráfico de linha da quebra de moedas ao longo do tempo" id="quebra-de-moedas" loading="lazy">
-  </section>
-  <section class="chart-container">
-      <img src="assets/img/grafico-28.jpg" alt="Gráfico de linha de moedas versus ouro ao longo do tempo" id="moedas-vs-ouro" loading="lazy">
-  </section>
-  <section class="chart-container">
-      <img src="assets/img/grafico-29.jpg" alt="Gráfico de linha de países com crises bancárias ao longo do tempo" id="paises-crises-bancarias" loading="lazy">
-  </section>
-  <section class="chart-container">
-      <img src="assets/img/grafico-30.jpg" alt="Gráfico de linha da dívida federal em relação ao PIB ao longo do tempo" id="divida-federal-pib" loading="lazy">
-  </section>
-  <section class="chart-container">
-      <img src="assets/img/grafico-31.jpg" alt="Gráfico de linha da dívida federal detida pelo público ao longo do tempo" id="divida-federal-publico" loading="lazy">
-  </section>
-  <section class="chart-container">
-      <img src="assets/img/grafico-36.jpg" alt="Gráfico de linha das receitas versus despesas federais ao longo do tempo" id="receitas-vs-despesas-federal" loading="lazy">
-  </section>
+  <div class="chart-container">
+    <img src="assets/img/grafico-39.jpg" alt="horas-sp-500" id="horas-sp-500" loading="lazy">
+  </div>
+  <div class="chart-container">
+    <img src="assets/img/grafico-38.jpg" alt="sp-500-PL-Shiller" id="sp-500-PL-Shiller" loading="lazy">
+  </div>
+  <div class="chart-container">
+    <img src="assets/img/grafico-40.jpg" alt="especulacao-producao" id="especulacao-producao" loading="lazy" onload="if(window.innerWidth > 768) this.style.width='30%';">
+  </div>
+  <div class="chart-container">
+    <img src="assets/img/grafico-41.jpg" alt="capitalizacao-setores" id="capitalizacao-setores" loading="lazy">
+  </div>
+  <div class="chart-container">
+    <img src="assets/img/grafico-47.jpg" alt="taxas-de-juros-3000ac" id="taxas-de-juros-3000ac" loading="lazy">
+  </div>
+  <div class="chart-container">
+    <img src="assets/img/grafico-48.jpg" alt="retornos-titulos-10" id="retornos-titulos-10" loading="lazy">
+  </div>
+  <div class="chart-container">
+    <img src="assets/img/grafico-49.jpg" alt="energia-per-capita" id="energia-per-capita" loading="lazy">
+  </div>
+  <div class="chart-container">
+    <img src="assets/img/grafico-50.jpg" alt="energia-pib-g7" id="energia-pib-g7" loading="lazy">
+  </div>
+  <div class="chart-container">
+    <img src="assets/img/grafico-51.jpg" alt="consumo-energia-mundial" id="consumo-energia-mundial" loading="lazy">
+  </div>
+  <div class="chart-container">
+    <img src="assets/img/grafico-52.jpg" alt="posicao-ideologica-eua" id="posicao-ideologica-eua" loading="lazy">
+  </div>
+  <div class="chart-container">
+    <img src="assets/img/grafico-53.jpg" alt="discursos-politicos" id="discursos-politicos" loading="lazy">
+  </div>
+  <div class="chart-container">
+    <img src="assets/img/grafico-54.jpg" alt="problemas-mais-importantes" id="problemas-mais-importantes" loading="lazy">
+  </div>
+  <div class="chart-container">
+    <img src="assets/img/grafico-55.jpg" alt="paginas-registro-federal" id="paginas-registro-federal" loading="lazy">
+  </div>
+  <div class="chart-container">
+    <img src="assets/img/grafico-56.jpg" alt="objetivos-essenciais" id="objetivos-essenciais" loading="lazy">
+  </div>
+  <div class="chart-container">
+    <img src="assets/img/grafico-57.jpg" alt="gastos-educacao" id="gastos-educacao" loading="lazy">
+  </div>
+  <div class="chart-container">
+    <img src="assets/img/grafico-58.jpg" alt="advogados-por-pessoa" id="advogados-por-pessoa" loading="lazy">
+  </div>
+  <div class="chart-container">
+    <img src="assets/img/grafico-59.jpg" alt="doutorados-fisica" id="doutorados-fisica" loading="lazy">
+  </div>
+  <div class="chart-container">
+    <img src="assets/img/grafico-63.jpg" alt="divorcio-idade" id="divorcio-idade" loading="lazy">
+  </div>
+  <div class="chart-container">
+    <img src="assets/img/grafico-64.jpg" alt="familias-pobreza" id="familias-pobreza" loading="lazy">
+  </div>
+  <div class="chart-container">
+    <img src="assets/img/grafico-67.jpg" alt="obesidade-crianças" id="obesidade-crianças" loading="lazy">
+  </div>
+  <div class="chart-container">
+    <img src="assets/img/grafico-68.jpg" alt="gasto-saude-educacao" id="gasto-saude-educacao" loading="lazy">
+  </div>
+  <div class="chart-container">
+    <img src="assets/img/grafico-69.jpg" alt="medicos-administradores" id="medicos-administradores" loading="lazy">
+  </div>
+  <div class="chart-container">
+    <img src="assets/img/grafico-70.jpg" alt="oleos-vegetais" id="oleos-vegetais" loading="lazy">
+  </div>
+  <div class="chart-container">
+    <img src="assets/img/grafico-72.jpg" alt="rebanho-vacas" id="rebanho-vacas" loading="lazy">
+  </div>
+  <div class="chart-container">
+    <img src="assets/img/grafico-73.jpg" alt="dieta-estadunidense" id="dieta-estadunidense" loading="lazy">
+  </div>
+  <div class="chart-container">
+    <img src="assets/img/grafico-74.jpg" alt="disponibilidade-alimentos" id="disponibilidade-alimentos" loading="lazy">
+  </div>
+  <div class="chart-container">
+    <img src="assets/img/grafico-14.jpg" alt="preco-lata-campbell" id="preco-lata-campbell" loading="lazy">
+  </div>
+  <div class="chart-container">
+    <img src="assets/img/grafico-17.jpg" alt="ipc-eletricidade-alimentos-frutas" id="ipc-eletricidade-alimentos-frutas" loading="lazy">
+  </div>
+  <div class="chart-container">
+    <img src="assets/img/grafico-18.jpg" alt="preco-casa-renda" id="preco-casa-renda" loading="lazy">
+  </div>
+  <div class="chart-container">
+    <img src="assets/img/grafico-19.jpg" alt="preco-casa-salario-minimo" id="preco-casa-salario-minimo" loading="lazy">
+  </div>
+  <div class="chart-container">
+    <img src="assets/img/grafico-20.jpg" alt="preco-casa-alugueis-amsterdao" id="preco-casa-alugueis-amsterdao" loading="lazy">
+  </div>
+  <div class="chart-container">
+    <img src="assets/img/grafico-23.jpg" alt="reservas-ouro-preco" id="reservas-ouro-preco" loading="lazy">
+  </div>
+  <div class="chart-container">
+    <img src="assets/img/grafico-24.jpg" alt="episodios-hiperinflacao" id="episodios-hiperinflacao" loading="lazy">
+  </div>
+  <div class="chart-container">
+    <img src="assets/img/grafico-25.jpg" alt="ajustado-por-inflacao" id="ajustado-por-inflacao" loading="lazy">
+  </div>
+  <div class="chart-container">
+    <img src="assets/img/grafico-26.jpg" alt="revisao-por-pares" id="revisao-por-pares" loading="lazy">
+  </div>
+  <div class="chart-container">
+    <img src="assets/img/grafico-27.jpg" alt="quebra-de-moedas" id="quebra-de-moedas" loading="lazy">
+  </div>
+  <div class="chart-container">
+    <img src="assets/img/grafico-28.jpg" alt="moedas-vs-ouro" id="moedas-vs-ouro" loading="lazy">
+  </div>
+  <div class="chart-container">
+    <img src="assets/img/grafico-29.jpg" alt="paises-crises-bancarias" id="paises-crises-bancarias" loading="lazy">
+  </div>
+  <div class="chart-container">
+    <img src="assets/img/grafico-30.jpg" alt="divida-federal-pib" id="divida-federal-pib" loading="lazy">
+  </div>
+  <div class="chart-container">
+    <img src="assets/img/grafico-31.jpg" alt="divida-federal-publico" id="divida-federal-publico" loading="lazy">
+  </div>
+  <div class="chart-container">
+    <img src="assets/img/grafico-36.jpg" alt="receitas-vs-despesas-federal" id="receitas-vs-despesas-federal" loading="lazy">
+  </div>
 
-  <section class="chart-container">
+  <div class="chart-container">
     <quote style="font-size: 35px;margin-top: 30x; margin-right: 30%; margin-left: 30%; text-align: center; margin-bottom: 30px;">"Eu não acredito que teremos um bom <a href="https://bitcoin.org/files/bitcoin-paper/bitcoin_pt_br.pdf" target="_blank">dinheiro</a> novamente antes de tirarmos isso das mãos do governo. Ou seja, não podemos retirá-lo violentamente das mãos do governo, tudo o que podemos fazer é, de maneira sutil e indireta, introduzir algo que eles não podem impedir."<br><br>F.A. Hayek, 1984.</quote> 
-  </section>
-</main>
+  </div>
+</div> <!--Termina o Css scroll-->
   </div>
   </div>
 
-  <!-- 
+  <!-- Mobile Bottom Navigation -->
   <nav class="mobile-nav">
-    <div class="mobile-nav-icon" onclick="toggleComments()" tabindex="0" aria-label="Abrir comentários" role="button">
+    <div class="mobile-nav-icon" onclick="toggleComments()">
       <img src="assets/img/comment-icon.svg" alt="Comentários">
     </div>
-    <div class="mobile-nav-icon" onclick="toggleSource()" tabindex="0" aria-label="Ver fonte do gráfico" role="button">
+    <div class="mobile-nav-icon" onclick="toggleSource()">
       <img src="assets/img/fonte-icon.svg" alt="Fonte">
     </div>
-    <div class="mobile-nav-icon" onclick="shareCurrentChart()" tabindex="0" aria-label="Compartilhar gráfico" role="button">
+    <div class="mobile-nav-icon" onclick="shareCurrentChart()">
       <img src="assets/img/share-icon.svg" alt="Compartilhar">
     </div>
-    <div class="mobile-nav-icon" onclick="toggleExplanation()" tabindex="0" aria-label="Ver explicação do gráfico" role="button">
+    <div class="mobile-nav-icon" onclick="toggleExplanation()">
       <img src="assets/img/explanation.svg" alt="Explicação">
     </div>
   </nav>
-Mobile Bottom Navigation -->
-
-
   </body>
 </html>

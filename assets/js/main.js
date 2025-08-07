@@ -162,7 +162,7 @@ function showComments(chartId) {
             <span class="comments-close">×</span>
         </div>
         <div class="comments-list">
-
+            <!-- Comments will appear here -->
         </div>
         <div class="comments-input-container">
             <textarea placeholder="Adicione um comentário..."></textarea>
@@ -537,7 +537,10 @@ async function loadComments(chartId) {
         const response = await fetch(`${API_BASE}/comments?chartId=${chartId}`);
         const comments = await response.json();
         
-        commentsList.innerHTML = comments.map(comment => `
+        // Ensure comments is an array
+        const commentsArray = Array.isArray(comments) ? comments : [];
+        
+        commentsList.innerHTML = commentsArray.map(comment => `
             <div class="comment">
                 <div class="comment-main">
                     <div class="comment-header">
@@ -550,11 +553,14 @@ async function loadComments(chartId) {
         `).join('');
     } catch (error) {
         console.error('Error loading comments:', error);
+        // Set empty content on error
+        commentsList.innerHTML = '<p>Não foi possível carregar os comentários.</p>';
     }
 }
 
 function escapeHtml(unsafe) {
-    return unsafe
+    if (!unsafe) return '';
+    return String(unsafe)
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
@@ -565,22 +571,27 @@ function escapeHtml(unsafe) {
 function formatTimestamp(timestamp) {
     if (!timestamp) return '';
     
-    const now = Math.floor(Date.now() / 1000);
-    const diffSecs = now - timestamp;
+    try {
+        const now = Math.floor(Date.now() / 1000);
+        const diffSecs = now - timestamp;
 
-    if (isNaN(diffSecs)) return '';
+        if (isNaN(diffSecs)) return '';
 
-    if (diffSecs < 60) return 'agora';
-    if (diffSecs < 3600) return `${Math.floor(diffSecs/60)}m`;
-    if (diffSecs < 86400) return `${Math.floor(diffSecs/3600)}h`;
-    if (diffSecs < 604800) return `${Math.floor(diffSecs/86400)}d`;
-    if (diffSecs < 2419200) return `${Math.floor(diffSecs/604800)}sem`;
-    
-    const date = new Date(timestamp * 1000);
-    return date.toLocaleDateString('pt-BR', { 
-        day: 'numeric',
-        month: 'short'
-    }).replace('.', '');
+        if (diffSecs < 60) return 'agora';
+        if (diffSecs < 3600) return `${Math.floor(diffSecs/60)}m`;
+        if (diffSecs < 86400) return `${Math.floor(diffSecs/3600)}h`;
+        if (diffSecs < 604800) return `${Math.floor(diffSecs/86400)}d`;
+        if (diffSecs < 2419200) return `${Math.floor(diffSecs/604800)}sem`;
+        
+        const date = new Date(timestamp * 1000);
+        return date.toLocaleDateString('pt-BR', { 
+            day: 'numeric',
+            month: 'short'
+        }).replace('.', '');
+    } catch (error) {
+        console.error('Error formatting timestamp:', error);
+        return '';
+    }
 }
 
 function loadScript(scriptId) {
@@ -627,20 +638,30 @@ function getCurrentChartContainer() {
 }
 
 function toggleExplanation() {
-    const toggleSwitch = event.currentTarget;
-    const explanation = toggleSwitch.closest('.chart-container').querySelector('.explanation');
+    const currentChart = getCurrentChartContainer();
+    if (!currentChart) return;
     
-    toggleSwitch.classList.toggle('active');
-    explanation.classList.toggle('visible');
+    const explanation = currentChart.querySelector('.explanation');
+    if (explanation) {
+        if (explanation.style.display === 'none' || !explanation.style.display) {
+            explanation.style.display = 'block';
+        } else {
+            explanation.style.display = 'none';
+        }
+    }
+    
+    toggleMobileNavActiveState('explanation');
 }
 
 function toggleComments() {
     const currentChart = getCurrentChartContainer();
     if (!currentChart) return;
     
-    const commentButton = currentChart.querySelector('.comment-icon');
-    if (commentButton) {
-        commentButton.click();
+    // Get the chart ID from the canvas element
+    const canvasElement = currentChart.querySelector('.canvas');
+    if (canvasElement && canvasElement.id) {
+        const chartId = canvasElement.id;
+        showComments(chartId);
     }
     
     toggleMobileNavActiveState('comment');
@@ -650,9 +671,14 @@ function toggleSource() {
     const currentChart = getCurrentChartContainer();
     if (!currentChart) return;
     
-    const sourceButton = currentChart.querySelector('.fonte-icon');
-    if (sourceButton) {
-        sourceButton.click();
+    const fonte = currentChart.querySelector('.fonte');
+    if (fonte) {
+        // Scroll to the source/fonte element and highlight it
+        fonte.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        fonte.style.backgroundColor = '#ffff99';
+        setTimeout(() => {
+            fonte.style.backgroundColor = '';
+        }, 2000);
     }
     
     toggleMobileNavActiveState('source');
@@ -662,11 +688,11 @@ function shareCurrentChart() {
     const currentChart = getCurrentChartContainer();
     if (!currentChart) return;
     
-    const shareButton = currentChart.querySelector('.share-icon');
-    if (shareButton) {
-        shareButton.click();
-    }
+    // Create a dummy share button to pass to shareChart function
+    const dummyShareButton = document.createElement('div');
+    dummyShareButton.closest = () => currentChart;
     
+    shareChart(dummyShareButton);
     toggleMobileNavActiveState('share');
 }
 
@@ -687,37 +713,3 @@ window.addEventListener('scroll', () => {
 
 window.addEventListener('resize', () => {
 }, { passive: true });
-
-document.addEventListener('keydown', function(e) {
-    if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
-
-    const chartContainers = Array.from(document.querySelectorAll('.chart-container'));
-    const current = getCurrentChartContainer();
-    let idx = chartContainers.indexOf(current);
-
-    if (e.key === 'ArrowUp' || e.key === 'w' || e.key === 'W') {
-        if (idx > 0) {
-            chartContainers[idx - 1].scrollIntoView({ behavior: 'smooth', block: 'start' });
-            e.preventDefault();
-        }
-    }
-    if (e.key === 'ArrowDown' || e.key === 's' || e.key === 'S') {
-        if (idx < chartContainers.length - 1) {
-            chartContainers[idx + 1].scrollIntoView({ behavior: 'smooth', block: 'start' });
-            e.preventDefault();
-        }
-    }
-    if (e.key === 'q' || e.key === 'Q') {
-        const snap = document.querySelector('.snap-container');
-        if (snap) {
-            snap.scrollTo({ top: 0, behavior: 'smooth' });
-        } else {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-        e.preventDefault();
-    }
-    if (e.key === 'z' || e.key === 'Z') {
-        toggleMenu();
-        e.preventDefault();
-    }
-});
